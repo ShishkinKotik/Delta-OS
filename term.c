@@ -37,14 +37,14 @@ void printInfoAboutUser()
     printf(T_YELLOW "phoenixOSuser@PhoenixOS~$ \n" T_RESET);
     printf(T_YELLOW "---------------------------- \n" T_RESET);
     printf(T_YELLOW "[OS]: [PhoenixOS v 1.0.2] \n" T_RESET);
-    printf(T_YELLOW "[Host]: [HP Laptop 15-bs0xx] \n" T_RESET);
+    printf(T_YELLOW "[Host]: [HP Laptop 15-bs0xx] \n" T_RESET); //Host может быть каким угодно здесь представлен именно мой хост
     printf(T_YELLOW "[Kernel]: [6.8.0-71-generic] \n" T_RESET);
     printf(T_YELLOW "[Packages]: [0] \n" T_RESET);
     printf(T_YELLOW "[Shell]: [bash] \n" T_RESET);
-    printf(T_YELLOW "[Theme]: [dark-with-blur] \n" T_RESET);
+    printf(T_YELLOW "[Theme]: [dark-with-blur] \n" T_RESET);//здесь тоже самое что и выше
     printf(T_YELLOW "[Terminal]: [phnxOS-termianl] \n" T_RESET);
-    printf(T_YELLOW "[CPU]: [Intel core i5 7th gen] \n" T_RESET);
-    printf(T_YELLOW "[GPU]: [Radeon Graphics] \n" T_RESET);
+    printf(T_YELLOW "[CPU]: [Intel core i5 7th gen] \n" T_RESET);//Процыки тоже могут быть разными просто указал своё
+    printf(T_YELLOW "[GPU]: [Radeon Graphics] \n" T_RESET);//здесь также
 }
 
 void welcome()
