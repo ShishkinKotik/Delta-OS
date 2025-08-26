@@ -64,8 +64,8 @@ void printInfoAboutUser()
     printf(T_YELLOW "[Shell]: [bash] \n" T_RESET);
     printf(T_YELLOW "[Theme]: [dark-with-blur] \n" T_RESET);
     printf(T_YELLOW "[Terminal]: [phnxOS-termianl] \n" T_RESET);
-    printf(T_YELLOW "[CPU]: [Gamma 1 7th gen] \n" T_RESET);
-    printf(T_YELLOW "[GPU]: [Gamma GPU] \n" T_RESET);
+    printf(T_YELLOW "[CPU]: [Gamma 1 7th gen] \n" T_RESET); //типо процык
+    printf(T_YELLOW "[GPU]: [Gamma GPU] \n" T_RESET); //простой пример видюхи
 }
 
 void welcome()
