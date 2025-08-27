@@ -89,12 +89,21 @@ void help()
     const char help[250] = "3.help - вывод всех команд";
     const char ftch[250] = "4.dltfetch - выводит логотип ОС а также информация о компьютере и ос";
     const char exit[250] = "5.ext - выход и завершение работы терминала";
+    const char fils[250] = "6.lf - вывод всех важных файлов для работы ОС";
 
     printf("%s\n", calc);
     printf("%s\n", edit);
     printf("%s\n", help);
     printf("%s\n", ftch);
     printf("%s\n", exit);
+    printf("%s\n", fils);
+}
+
+void files()
+{
+    printf("[все важные файлы]\n");
+    
+    const char files[256] = T_CYAN "" T_RESET;
 }
 
 int main()
@@ -170,6 +179,9 @@ int main()
             printf(T_GREEN "[завершение программы]\n" T_RESET);
             break;
         }
+
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF) {}
     }
 
     return 0;
