@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "headers/fetch.h"
 #include "headers/welcome.h"
+#include "headers/help.h"
 
 //==================================
 //|            ЦВЕТА               |
@@ -80,23 +81,6 @@ void edit()
     }
 
     printf(T_CYAN "[Редактор завершил работу]\n" T_RESET);
-}
-
-void help()
-{
-    const char calc[250] = "1.calc - калькулятор";
-    const char edit[250] = "2.dedit - примитивный текстовый редактор";
-    const char help[250] = "3.help - вывод всех команд";
-    const char ftch[250] = "4.dltfetch - выводит логотип ОС а также информация о компьютере и ос";
-    const char exit[250] = "5.ext - выход и завершение работы терминала";
-    const char fils[250] = "6.lf - вывод всех важных файлов для работы ОС";
-
-    printf("%s\n", calc);
-    printf("%s\n", edit);
-    printf("%s\n", help);
-    printf("%s\n", ftch);
-    printf("%s\n", exit);
-    printf("%s\n", fils);
 }
 
 void files()
