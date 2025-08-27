@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "headers/fetch.h"
+#include "headers/welcome.h"
 
 //==================================
 //|            ЦВЕТА               |
@@ -40,60 +42,16 @@ void LoadScreen()
     printf(T_BLUE "[Loading is end!]\n" T_RESET);
 }
 
-void printLogo()
-{
-    printf(T_YELLOW "____________                                                             \n" T_RESET);
-    printf(T_YELLOW "||        XX                ||===||                                        _____         ________   \n" T_RESET);
-    printf(T_YELLOW "||         XX               ||   ||        ||       //===XX  ||          //     XX      XX     ||   \n" T_RESET);
-    printf(T_YELLOW "||          XX   //===XX         ||     ===||===   //     XX ||         //       XX      XX         \n" T_RESET);
-    printf(T_YELLOW "||           XX //     XX        ||        ||     //       XX||        //         XX      XX____    \n" T_RESET);
-    printf(T_YELLOW "||          //  XX_____XX        ||        ||      XX      //||        XX         //          //    \n" T_RESET);
-    printf(T_YELLOW "||         //    XX              ||        ||       XX    // ||   XX    XX       //  XX      //     \n" T_RESET);
-    printf(T_YELLOW "|_________//      XX__//   ||____||____||   XX===__  XX__//  ||__XX      XX_____//    XX____//       \n" T_RESET);
-}
-
-void printInfoAboutUser()
-{
-    printf(T_YELLOW "____________________________ \n" T_RESET);
-    printf(T_YELLOW "deltaOSuser@DeltaOS~$ \n" T_RESET);
-    printf(T_YELLOW "---------------------------- \n" T_RESET);
-    printf(T_YELLOW "[OS]: [PhoenixOS v 1.0.2] \n" T_RESET);
-    printf(T_YELLOW "[Host]: [Delta Laptop 15-jd0xxs] \n" T_RESET);
-    printf(T_YELLOW "[Kernel]: [6.8.0-71-generic] \n" T_RESET);
-    printf(T_YELLOW "[Packages]: [1(fnxp)] \n" T_RESET);
-    printf(T_YELLOW "[Shell]: [bash] \n" T_RESET);
-    printf(T_YELLOW "[Theme]: [dark-with-blur] \n" T_RESET);
-    printf(T_YELLOW "[Terminal]: [phnxOS-termianl] \n" T_RESET);
-    printf(T_YELLOW "[CPU]: [Gamma 1 7th gen] \n" T_RESET); //типо процык
-    printf(T_YELLOW "[GPU]: [Gamma GPU] \n" T_RESET); //простой пример видюхи
-}
-
-void welcome()
-{
-    const char frstln[] = ".____________________________.";
-    const char newlin[] = "|                            |";
-    const char scndln[] = "|FFFFFFFFFFFFFFFFFFFFFFFFFFFF|";
-    const char thrdln[] = "|[ Welcome to the DeltaOS!  ]|";
-    const char frthln[] = "|FFFFFFFFFFFFFFFFFFFFFFFFFFFF|";
-    const char endlne[] = "|____________________________|";
-
-    printf("%s\n", frstln);
-    printf("%s\n", newlin);
-    printf("%s\n", thrdln);
-    printf("%s\n", endlne);
-}
-
 void edit()
 {
     printf(T_BLUE "[текстовый редактор]\n" T_RESET);
     char lines[MAX_LINES][MAX_LINE_LENGTH];
     int lineCount = 0;
     char inputLine[MAX_LINE_LENGTH];
-    bool emptyLineEntered = false;
 
     printf(T_CYAN "[начните ввод(введите 'x' для выхода)]: \n" T_RESET);
-
-    getchar();
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {}
 
     while (lineCount < MAX_LINES) {
         printf("%d: ", lineCount + 1);
@@ -108,16 +66,14 @@ void edit()
             break;
         }
 
+        if (strcmp(inputLine, "x") == 0) {
+            break;
+
         strcpy(lines[lineCount], inputLine);
         lineCount++;
 
         if(lineCount >= MAX_LINES) {
             printf(T_YELLOW "[warn]: [достигнуто максимальное количество строк. Завершите ввод\n" T_RESET);
-            break;
-        }
-
-        if (strcmp(inputLine, "x") == 0) {
-            emptyLineEntered = true;
             break;
         }
 
