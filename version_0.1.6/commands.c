@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
 
 //==================================
 //|            ЦВЕТА               |
@@ -9,6 +11,49 @@
 #define T_BLUE  "\033[0;34m"
 #define T_YELLOW "\033[1;33m"
 #define T_RESET "\033[0m"
+
+#define MAX_LINES 512
+#define MAX_LINE_LENGTH 1024
+
+void edit()
+{
+    printf(T_BLUE "[текстовый редактор]\n" T_RESET);
+    char lines[MAX_LINES][MAX_LINE_LENGTH];
+    int lineCount = 0;
+    char inputLine[MAX_LINE_LENGTH];
+
+    printf(T_CYAN "[начните ввод(введите 'x' для выхода)]: \n" T_RESET);
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {}
+
+    while (lineCount < MAX_LINES) {
+        printf("%d: ", lineCount + 1);
+        if (fgets(inputLine, sizeof(inputLine), stdin) == NULL) {
+            fprintf(stderr, T_RED "[err]: [ошибка чтения строки.]\n" T_RESET);
+            break;
+        }
+
+        inputLine[strcspn(inputLine, "\n")] = 0;
+
+        if (strlen(inputLine) == 0) {
+            break;
+        }
+
+        if (strcmp(inputLine, "x") == 0) {
+            break;
+
+        strcpy(lines[lineCount], inputLine);
+        lineCount++;
+
+        if(lineCount >= MAX_LINES) {
+            printf(T_YELLOW "[warn]: [достигнуто максимальное количество строк. Завершите ввод\n" T_RESET);
+            break;
+        }
+
+    }
+
+    printf(T_CYAN "[Редактор завершил работу]\n" T_RESET);
+}
 
 void printLogo()
 {
@@ -63,4 +108,21 @@ void help()
     printf("%s\n", fils);
     printf("%s\n", frm_3);
     printf("%s\n", frm_1);
+}
+
+
+void files()
+{
+    printf("[все важные файлы]\n");
+    const char term_dot_c[125] = "[c lang]: \n [term.c]\n";
+    const char comm_dot_c[115] = "[commands.c]\n";
+    const char strt_dot_c[115] = "[start.c]\n";
+    const char strt_dot_h[115] = "[start_screen.c]\n";
+    const char comm_dot_h[115] = "[commands.h]\n";
+
+    printf("%s", term_dot_c);
+    printf("%s", comm_dot_c);
+    printf("%s", strt_dot_c);
+    printf("%s", strt_dot_h);
+    printf("%s", comm_dot_h);
 }
