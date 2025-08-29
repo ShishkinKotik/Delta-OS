@@ -27,14 +27,16 @@ void printInfoAboutUser()
     printf(T_YELLOW "____________________________ \n" T_RESET);
     printf(T_YELLOW "deltaOSuser@DeltaOS~$ \n" T_RESET);
     printf(T_YELLOW "---------------------------- \n" T_RESET);
-    printf(T_YELLOW "[OS]: [PhoenixOS v 1.0.2] \n" T_RESET);
+    printf(T_YELLOW "[OS]: [DeltaOS v 0.2.2] \n" T_RESET);
     printf(T_YELLOW "[Host]: [Delta Laptop 15-jd0xxs] \n" T_RESET);
     printf(T_YELLOW "[Kernel]: [6.8.0-71-generic] \n" T_RESET);
-    printf(T_YELLOW "[Packages]: [1(fnxp)] \n" T_RESET);
+    printf(T_YELLOW "[Packages]: [1(dltp)] \n" T_RESET);
     printf(T_YELLOW "[Shell]: [bash] \n" T_RESET);
     printf(T_YELLOW "[Theme]: [dark-with-blur] \n" T_RESET);
-    printf(T_YELLOW "[Terminal]: [phnxOS-termianl] \n" T_RESET);
-    printf(T_YELLOW "[All lines]: [235] \n" T_RESET);
+    printf(T_YELLOW "[Terminal]: [dltOS-termianl] \n" T_RESET);
+    printf(T_YELLOW "[All lines]: [dohuya] \n" T_RESET);
     printf(T_YELLOW "[CPU]: [Gamma 1 7th gen] \n" T_RESET);
     printf(T_YELLOW "[GPU]: [Gamma GPU] \n" T_RESET);
 }
+
+
