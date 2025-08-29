@@ -70,7 +70,7 @@ int main()
             printf(T_CYAN "[калькулятор завершил работу]\n" T_RESET);
         }
 
-        if (strcmp(command, "dedit") == 0) {
+        if (strcmp(command, "edit") == 0) {
             edit();
         }
 
@@ -81,6 +81,10 @@ int main()
 
         if (strcmp(command, "help") == 0) {
             help();
+        }
+
+        if (strcmp(command, "lf") == 0) {
+            files();
         }
 
         if (strcmp(command, "ext") == 0) {
