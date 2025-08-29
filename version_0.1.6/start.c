@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+#define T_GREEN "\033[0;32m"
+#define T_BLUE  "\033[0;34m"
+#define T_RESET "\033[0m"
+
 void welcome()
 {
     const char frstln[] = ".____________________________.";
