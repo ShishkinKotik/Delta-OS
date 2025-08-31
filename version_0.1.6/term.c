@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "headers/commands.h"
+#include "headers/start_screen.h"
 
 //==================================
 //|            ЦВЕТА               |
@@ -14,13 +15,15 @@
 #define T_YELLOW "\033[1;33m"
 #define T_RESET "\033[0m"
 
+#define MCL 256 // Максимальная длинна строки 
+
 int main()
 {
     LoadScreen();
     welcome();
-    char command[256];
+    char command[MCL];
     while (true) {
-        printf("deltaOSuser$~: ");
+        printf("dlt v0.2.3> ");
         if (scanf("%255s", command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
         }
@@ -75,8 +78,7 @@ int main()
         }
 
         if (strcmp(command, "dltfetch") == 0) {
-            printLogo();
-            printInfoAboutUser();
+            print_fetch();
         }
 
         if (strcmp(command, "help") == 0) {
@@ -84,6 +86,7 @@ int main()
         }
 
         if (strcmp(command, "lf") == 0) {
+            printf(T_CYAN "[все файлы для работы ОС]\n" T_RESET);
             files();
         }
 
