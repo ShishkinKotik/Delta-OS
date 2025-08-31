@@ -85,7 +85,7 @@ void print_fetch()
     printf(T_CYAN "                 ____________________________ \n" T_RESET);
     printf(T_CYAN "      //XX       deltaOSuser@DeltaOS~$ \n" T_RESET);
     printf(T_CYAN "     // XX       ---------------------------- \n" T_RESET);
-    printf(T_CYAN "    //   XX      [OS]: [DeltaOS v 0.2.2] \n" T_RESET);
+    printf(T_CYAN "    //   XX      [OS]: [DeltaOS v 0.2.4] \n" T_RESET);
     printf(T_CYAN "   //     XX     [Host]: [Delta Laptop 15-jd0xxs] \n" T_RESET);
     printf(T_CYAN "  //       XX    [Shell]: [bash] \n" T_RESET);
     printf(T_CYAN " //         XX   [Theme]: [dark-with-blur] \n" T_RESET);
