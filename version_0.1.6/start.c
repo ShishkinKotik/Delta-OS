@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <string.h>
 
 #define T_GREEN "\033[0;32m"
 #define T_BLUE  "\033[0;34m"
 #define T_RESET "\033[0m"
+
 
 void welcome()
 {
@@ -21,7 +23,7 @@ void welcome()
 
 void LoadScreen()
 {
-    printf(T_BLUE "[Start loading OS]\n" T_RESET);
+    printf(T_BLUE "[Start loading of OS]\n" T_RESET);
     printf(T_GREEN "[OK]: Compiling term.c\n" T_RESET);
     printf(T_GREEN "[OK]: Start loading commands\n" T_RESET);
     printf(T_GREEN "[OK]: Commands is load\n" T_RESET);
