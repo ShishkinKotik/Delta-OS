@@ -23,7 +23,7 @@ int main()
     welcome();
     char command[MCL];
     while (true) {
-        printf("dlt v0.2.3> ");
+        printf("dlt v0.2.4> ");
         if (scanf("%255s", command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
         }
