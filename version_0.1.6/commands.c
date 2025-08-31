@@ -2,9 +2,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-//==================================
-//|            ЦВЕТА               |
-//==================================
 #define T_GREEN "\033[0;32m"
 #define T_RED   "\033[0;31m"
 #define T_CYAN  "\033[0;36m"
@@ -21,8 +18,10 @@ void edit()
     char lines[MAX_LINES][MAX_LINE_LENGTH];
     int lineCount = 0;
     char inputLine[MAX_LINE_LENGTH];
+    bool emptyLineEntered = false;
 
     printf(T_CYAN "[начните ввод(введите 'x' для выхода)]: \n" T_RESET);
+
     int c;
     while ((c = getchar()) != '\n' && c != EOF) {}
 
@@ -41,6 +40,7 @@ void edit()
 
         if (strcmp(inputLine, "x") == 0) {
             break;
+        }
 
         strcpy(lines[lineCount], inputLine);
         lineCount++;
@@ -50,38 +50,46 @@ void edit()
             break;
         }
 
+        if (strcmp(inputLine, "x") == 0) {
+            emptyLineEntered = true;
+            break;
+        }
+
     }
 
     printf(T_CYAN "[Редактор завершил работу]\n" T_RESET);
 }
 
-void printLogo()
+
+void files()
 {
-    printf(T_CYAN "____________                                                             \n" T_RESET);
-    printf(T_CYAN "||        XX                 ||===||                                        _____         ________   \n" T_RESET);
-    printf(T_CYAN "||         XX                ||   ||        ||       //===XX  ||          //     XX      XX     ||   \n" T_RESET);
-    printf(T_CYAN "||          XX    //===XX         ||     ===||===   //     XX ||         //       XX      XX         \n" T_RESET);
-    printf(T_CYAN "||           XX  //     XX        ||        ||     //       XX||        //         XX      XX____    \n" T_RESET);
-    printf(T_CYAN "||           //  XX_____XX        ||        ||      XX      //||        XX         //          //    \n" T_RESET);
-    printf(T_CYAN "||          //    XX              ||        ||       XX    // ||   XX    XX       //  XX      //     \n" T_RESET);
-    printf(T_CYAN "||_________//      XX__//   ||____||____||   XX===__  XX__//  ||__XX      XX_____//    XX____//       \n" T_RESET);
+    const char term_dot_c[128] = T_CYAN " [файлы Си]: \n [term.c] \n" T_RESET;
+    const char comm_dot_c[115] = T_CYAN " [commands.c] \n" T_RESET;
+    const char strt_dot_c[115] = T_CYAN " [start.c] \n" T_RESET;
+    const char strt_dot_h[115] = T_CYAN " [start_screen.h]" T_RESET;
+    const char comm_dot_h[115] = T_CYAN " [commands.h] \n" T_RESET;
+    const char start_dot_sh[115] = T_CYAN "[bash]: \n [DltOS.sh] \n" T_RESET;
+    const char logo_dot_txt[115] = T_CYAN "[txt]: \n [logo.txt] \n" T_RESET;
+
+    printf("%s", term_dot_c);
+    printf("%s", comm_dot_c);
+    printf("%s", comm_dot_h);
+    printf("%s\n", strt_dot_h);
+    printf("%s\n", strt_dot_c);
+    printf("%s", start_dot_sh);
+    printf("%s", logo_dot_txt);
 }
 
-void printInfoAboutUser()
+void print_fetch()
 {
-    printf(T_YELLOW "____________________________ \n" T_RESET);
-    printf(T_YELLOW "deltaOSuser@DeltaOS~$ \n" T_RESET);
-    printf(T_YELLOW "---------------------------- \n" T_RESET);
-    printf(T_YELLOW "[OS]: [DeltaOS v 0.2.2] \n" T_RESET);
-    printf(T_YELLOW "[Host]: [Delta Laptop 15-jd0xxs] \n" T_RESET);
-    printf(T_YELLOW "[Kernel]: [6.8.0-71-generic] \n" T_RESET);
-    printf(T_YELLOW "[Packages]: [1(dltp)] \n" T_RESET);
-    printf(T_YELLOW "[Shell]: [bash] \n" T_RESET);
-    printf(T_YELLOW "[Theme]: [dark-with-blur] \n" T_RESET);
-    printf(T_YELLOW "[Terminal]: [dltOS-termianl] \n" T_RESET);
-    printf(T_YELLOW "[All lines]: [dohuya] \n" T_RESET);
-    printf(T_YELLOW "[CPU]: [Gamma 1 7th gen] \n" T_RESET);
-    printf(T_YELLOW "[GPU]: [Gamma GPU] \n" T_RESET);
+    printf(T_CYAN "                 ____________________________ \n" T_RESET);
+    printf(T_CYAN "      //XX       deltaOSuser@DeltaOS~$ \n" T_RESET);
+    printf(T_CYAN "     // XX       ---------------------------- \n" T_RESET);
+    printf(T_CYAN "    //   XX      [OS]: [DeltaOS v 0.2.2] \n" T_RESET);
+    printf(T_CYAN "   //     XX     [Host]: [Delta Laptop 15-jd0xxs] \n" T_RESET);
+    printf(T_CYAN "  //       XX    [Shell]: [bash] \n" T_RESET);
+    printf(T_CYAN " //         XX   [Theme]: [dark-with-blur] \n" T_RESET);
+    printf(T_CYAN "//___________XX  [Terminal]: [dltOS-termianl] \n" T_RESET);
 }
 
 void help()
@@ -108,21 +116,4 @@ void help()
     printf("%s\n", fils);
     printf("%s\n", frm_3);
     printf("%s\n", frm_1);
-}
-
-
-void files()
-{
-    printf("[все важные файлы]\n");
-    const char term_dot_c[125] = "[c lang]: \n [term.c]\n";
-    const char comm_dot_c[115] = "[commands.c]\n";
-    const char strt_dot_c[115] = "[start.c]\n";
-    const char strt_dot_h[115] = "[start_screen.c]\n";
-    const char comm_dot_h[115] = "[commands.h]\n";
-
-    printf("%s", term_dot_c);
-    printf("%s", comm_dot_c);
-    printf("%s", strt_dot_c);
-    printf("%s", strt_dot_h);
-    printf("%s", comm_dot_h);
 }
