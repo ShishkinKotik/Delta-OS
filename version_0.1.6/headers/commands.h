@@ -1,28 +1,31 @@
+/edit()
 #ifndef EDIT_H
 #define EDIT_H
 
 void edit();
 
-#endif 
+#endif
 
+//fetch()
 #ifndef FETCH_H
 #define FETCH_H
 
-void printLogo();
-void printInfoAboutUser();
+void print_fetch();
 
 #endif
 
-#ifndef FILES_H
-#define FILES_H
-
-void files();
-
-#endif
-
+//help()
 #ifndef HELP_H
 #define HELP_H
 
 void help();
+
+#endif
+
+//files()
+#ifndef FILES_H
+#define FILES_H
+
+void files();
 
 #endif
