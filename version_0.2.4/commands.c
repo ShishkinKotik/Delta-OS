@@ -12,6 +12,9 @@
 #define MAX_LINES 512
 #define MAX_LINE_LENGTH 1024
 
+#ifndef COMMANDS_H
+#define COMMANDS_H
+
 void edit()
 {
     printf(T_BLUE "[текстовый редактор]\n" T_RESET);
@@ -61,25 +64,6 @@ void edit()
 }
 
 
-void files()
-{
-    const char term_dot_c[128] = T_CYAN " [файлы Си]: \n [term.c] \n" T_RESET;
-    const char comm_dot_c[115] = T_CYAN " [commands.c] \n" T_RESET;
-    const char strt_dot_c[115] = T_CYAN " [start.c] \n" T_RESET;
-    const char strt_dot_h[115] = T_CYAN " [start_screen.h]" T_RESET;
-    const char comm_dot_h[115] = T_CYAN " [commands.h] \n" T_RESET;
-    const char start_dot_sh[115] = T_CYAN "[bash]: \n [DltOS.sh] \n" T_RESET;
-    const char logo_dot_txt[115] = T_CYAN "[txt]: \n [logo.txt] \n" T_RESET;
-
-    printf("%s", term_dot_c);
-    printf("%s", comm_dot_c);
-    printf("%s", comm_dot_h);
-    printf("%s\n", strt_dot_h);
-    printf("%s\n", strt_dot_c);
-    printf("%s", start_dot_sh);
-    printf("%s", logo_dot_txt);
-}
-
 void print_fetch()
 {
     printf(T_CYAN "                 ____________________________ \n" T_RESET);
@@ -103,6 +87,7 @@ void help()
     const char ftch[250] = T_YELLOW "|      4.dltfetch - выводит логотип ОС а также информация о компьютере и ос  |" T_RESET;
     const char exit[250] = T_YELLOW "|      5.ext - выход и завершение работы терминала                           |" T_RESET;
     const char fils[250] = T_YELLOW "|      6.lf - список файлов в помощью которых работает ос                    |" T_RESET;
+    const char add[250] =  T_YELLOW "|      7.add - добавление с файлов                                           |" T_RESET;
     const char frm_3[128] = T_BLUE  "|                                                                            |" T_RESET;
     const char frm_1[128] = T_BLUE  "[============================================================================]" T_RESET;
 
@@ -113,7 +98,33 @@ void help()
     printf("%s\n", help);
     printf("%s\n", ftch);
     printf("%s\n", exit);
+    printf("%s\n", add);
     printf("%s\n", fils);
     printf("%s\n", frm_3);
     printf("%s\n", frm_1);
 }
+
+void files()
+{
+    const char term_dot_c[128] = T_CYAN " [файлы Си]: \n [term.c] \n" T_RESET;
+    const char comm_dot_c[115] = T_CYAN " [commands.c] \n" T_RESET;
+    const char strt_dot_c[115] = T_CYAN " [start.c] \n" T_RESET;
+    const char add_dot_c[115] = T_CYAN " [add.c] \n" T_RESET;
+    const char add_dot_h[115] = T_CYAN " [add.h] \n" T_RESET;
+    const char strt_dot_h[115] = T_CYAN " [start_screen.h]\n" T_RESET;
+    const char comm_dot_h[115] = T_CYAN " [commands.h] \n" T_RESET;
+    const char start_dot_sh[115] = T_CYAN "[bash]: \n [start.sh] \n" T_RESET;
+    const char logo_dot_txt[115] = T_CYAN "[txt]: \n [logo.txt] \n" T_RESET;
+
+    printf("%s", term_dot_c);
+    printf("%s", comm_dot_c);
+    printf("%s", comm_dot_h);
+    printf("%s", add_dot_c);
+    printf("%s", add_dot_h);
+    printf("%s\n", strt_dot_h);
+    printf("%s\n", strt_dot_c);
+    printf("%s", start_dot_sh);
+    printf("%s", logo_dot_txt);
+}
+
+#endif
