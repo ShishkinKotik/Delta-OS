@@ -1,10 +1,12 @@
 #include <stdio.h>
-#include <string.h>
 
 #define T_GREEN "\033[0;32m"
 #define T_BLUE  "\033[0;34m"
 #define T_RESET "\033[0m"
+#define T_CYAN  "\033[0;36m"
 
+#ifndef START_H
+#define START_H
 
 void welcome()
 {
@@ -19,6 +21,7 @@ void welcome()
     printf("%s\n", newlin);
     printf("%s\n", thrdln);
     printf("%s\n", endlne);
+    printf(T_CYAN "[впешите help для того чтобы узнать большинство команд]\n" T_RESET);
 }
 
 void LoadScreen()
@@ -33,11 +36,17 @@ void LoadScreen()
     printf(T_GREEN "[OK]: Command calc is load\n" T_RESET);
     printf(T_GREEN "[OK]: Start loading command edit\n" T_RESET);
     printf(T_GREEN "[OK]: Command edit is load\n" T_RESET);
-    printf(T_GREEN "[OK]: Start loading command phnxfetch\n" T_RESET);
+    printf(T_GREEN "[OK]: Start loading command dltfetch\n" T_RESET);
     printf(T_GREEN "[OK]: Command phnxfetch is load\n" T_RESET);
     printf(T_GREEN "[OK]: Start loading command ext\n" T_RESET);
     printf(T_GREEN "[OK]: Command ext is load\n");
+    printf(T_GREEN "[OK]: Start loading command add\n" T_RESET);
+    printf(T_GREEN "[OK]: Command add is load\n");
+    printf(T_GREEN "[OK]: Start loading command lf\n" T_RESET);
+    printf(T_GREEN "[OK]: Command lf is load\n");
     printf(T_GREEN "[OK]: Initialization working all commands\n" T_RESET);
-    printf(T_GREEN "[OK]: Optimization working all ocmmands\n" T_RESET);
+    printf(T_GREEN "[OK]: Optimization working all commands\n" T_RESET);
     printf(T_BLUE "[Loading is end!]\n" T_RESET);
 }
+
+#endif
