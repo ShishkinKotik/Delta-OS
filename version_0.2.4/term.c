@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include "headers/commands.h"
-#include "headers/start_screen.h"
+#include "lib/commands.h"
+#include "lib/start_screen.h"
+#include "lib/add.h"
 
 //==================================
 //|            ЦВЕТА               |
@@ -15,7 +16,7 @@
 #define T_YELLOW "\033[1;33m"
 #define T_RESET "\033[0m"
 
-#define MCL 256 // Максимальная длинна строки 
+#define MCL 256 // Максимальная длинна строки
 
 int main()
 {
@@ -23,7 +24,7 @@ int main()
     welcome();
     char command[MCL];
     while (true) {
-        printf("dlt v0.2.4> ");
+        printf("❯  ");
         if (scanf("%255s", command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
         }
@@ -43,29 +44,28 @@ int main()
 
             double RES;
 
-            if (SYMBOL != '+' && SYMBOL != '-' && SYMBOL == '*' && SYMBOL != '/') {
-                fprintf(stderr, T_RED "[err]: [неизвестный оператор!]\n" T_RESET);
-                continue;
-            }
-
-            if (SYMBOL == '+') {
-                RES = FRST_NUMBER + SCND_NUMBER;
-            }
-
-            if (SYMBOL == '-') {
-                RES = FRST_NUMBER - SCND_NUMBER;
-            }
-
-            if (SYMBOL == '*') {
-                RES = FRST_NUMBER * SCND_NUMBER;
-            }
-
-            if (SYMBOL == '/') {
-                if (SCND_NUMBER == 0) {
-                    fprintf(stderr, T_RED "[err]: [деление на ноль!]\n" T_RESET);
+            switch (SYMBOL) {
+                case '+':
+                    RES = FRST_NUMBER + SCND_NUMBER;
+                    break;
+                case '-':
+                    RES = FRST_NUMBER - SCND_NUMBER;
+                    break;
+                case '*':
+                    RES = FRST_NUMBER * SCND_NUMBER;
+                    break;
+                case '/':
+                    if (SCND_NUMBER == 0) {
+                        fprintf(stderr, T_RED "[ERR]: [Деление на ноль!]\n" T_RESET);
+                        while (getchar() != '\n');
+                        continue;
+                    }
+                    RES = FRST_NUMBER / SCND_NUMBER;
+                    break;
+                default:
+                    fprintf(stderr, T_RED "[ERR]: [Неверный символ операции!]\n" T_RESET);
+                    while (getchar() != '\n');
                     continue;
-                }
-                RES = FRST_NUMBER / SCND_NUMBER;
             }
 
             printf(T_GREEN "[результат]: " T_RESET);
@@ -88,6 +88,11 @@ int main()
         if (strcmp(command, "lf") == 0) {
             printf(T_CYAN "[все файлы для работы ОС]\n" T_RESET);
             files();
+        }
+
+        if (strcmp(command, "add") == 0) {
+            printf(T_CYAN "[добавление файла]\n" T_RESET);
+            add();
         }
 
         if (strcmp(command, "ext") == 0) {
