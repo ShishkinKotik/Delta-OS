@@ -44,4 +44,33 @@ void add()
     }
 }
 
+void del()
+{
+    /*variables*/
+    char fileName[MFNL];
+    char token[MAX_TOKEN_LENGTH];
+    char folderName[MAX_FOLDER_NAME_LENGTH];
+    FILE * file;
+
+    printf(T_CYAN "[введите что будем удалять]: \n" T_RESET);
+    scanf("%s\n", &*token);
+    if (strcmp(token, "file") == 0) {
+        printf(T_CYAN "[введите имя файла]: \n" T_RESET);
+        scanf("%s\n", &*fileName);
+        printf(T_CYAN "[файл '%s' удален]\n" T_RESET, fileName);
+
+        int isDeleted = 0;
+        file = fopen(fileName, "d");
+        if (file == NULL) {
+            printf(T_RED "[ошибка удаления файла]\n" T_RESET);
+            isDeleted = 1;
+        }
+        else {
+            fclose(file);
+            isDeleted = 1;
+        }
+    }
+}
+
+
 #endif
