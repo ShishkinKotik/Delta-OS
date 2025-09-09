@@ -15,7 +15,7 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-void edit()
+void edit(FILE * file, char *fileName)
 {
     printf(T_BLUE "[текстовый редактор]\n" T_RESET);
     char lines[MAX_LINES][MAX_LINE_LENGTH];
@@ -88,6 +88,8 @@ void help()
     const char exit[250] = T_YELLOW "|      5.ext - выход и завершение работы терминала                           |" T_RESET;
     const char fils[250] = T_YELLOW "|      6.lf - список файлов в помощью которых работает ос                    |" T_RESET;
     const char add[250] =  T_YELLOW "|      7.add - добавление с файлов                                           |" T_RESET;
+    const char del[250] =  T_YELLOW "|      8.del - удаление файлов                                               |" T_RESET;
+    const char red[250] = T_YELLOW  "|      9.redfile - редактирование файла                                      |" T_RESET;
     const char frm_3[128] = T_BLUE  "|                                                                            |" T_RESET;
     const char frm_1[128] = T_BLUE  "[============================================================================]" T_RESET;
 
@@ -99,6 +101,8 @@ void help()
     printf("%s\n", ftch);
     printf("%s\n", exit);
     printf("%s\n", add);
+    printf("%s\n", del);
+    printf("%s\n", red);
     printf("%s\n", fils);
     printf("%s\n", frm_3);
     printf("%s\n", frm_1);
