@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "lib/commands.h"
 #include "lib/start_screen.h"
-#include "lib/add.h"
+#include "lib/files.h"
 
 //==================================
 //|            ЦВЕТА               |
@@ -93,6 +93,16 @@ int main()
         if (strcmp(command, "add") == 0) {
             printf(T_CYAN "[добавление файла]\n" T_RESET);
             add();
+        }
+
+        if (strcmp(command, "del") == 0) {
+            printf(T_CYAN "[удаление файла]\n" T_RESET);
+            del();
+        }
+
+        if (strcmp(command, "redfile") == 0) {
+            printf(T_CYAN "[редактирование файла]\n" T_RESET);
+            redact();
         }
 
         if (strcmp(command, "ext") == 0) {
