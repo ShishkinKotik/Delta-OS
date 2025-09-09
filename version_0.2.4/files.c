@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "lib/commands.h"
 
 #define T_GREEN "\033[0;32m"
 #define T_RED   "\033[0;31m"
@@ -57,20 +58,38 @@ void del()
     if (strcmp(token, "file") == 0) {
         printf(T_CYAN "[введите имя файла]: \n" T_RESET);
         scanf("%s\n", &*fileName);
-        printf(T_CYAN "[файл '%s' удален]\n" T_RESET, fileName);
 
         int isDeleted = 0;
-        file = fopen(fileName, "d");
-        if (file == NULL) {
-            printf(T_RED "[ошибка удаления файла]\n" T_RESET);
-            isDeleted = 1;
+        if (remove(fileName) == 0) {
+            printf(T_GREEN "[файл '%s' удалён!]\n" T_RESET, fileName);
         }
         else {
-            fclose(file);
-            isDeleted = 1;
+            printf(T_RED "[ошибка удаления файла]\n" T_RESET);
         }
     }
 }
 
+void redact()
+{
+    char fileName[MFNL];
+    char token[MAX_TOKEN_LENGTH];
+    FILE * file = fopen(fileName, "w");
+
+    printf(T_CYAN "[впешите что будем редактировать]: \n" T_RESET);
+    scanf("%s\n", token);
+    if (strcmp(token, "file") == 0) {
+        printf(T_CYAN "[впешите имя файла для редактирования]: \n" T_RESET);
+        scanf("%s\n", fileName);
+        edit();
+    }
+    if (file == NULL) {
+        printf(T_RED "[ошибка открытия файла]\n" T_RESET);
+        return;
+    }
+    else {
+        printf(T_GREEN "[файл '%s' успешно открыт]\n" T_RESET, fileName);
+    }
+
+}
 
 #endif
