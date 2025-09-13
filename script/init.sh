@@ -1,4 +1,4 @@
-cd Delta-OS/version_0.2.4
+cd ~/Delta-OS/sub-system
 mkdir os
 gcc term.c start.c commands.c files.c -o os/term
 os/term
