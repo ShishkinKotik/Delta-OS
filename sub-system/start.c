@@ -1,12 +1,31 @@
 #include <stdio.h>
 
-#define T_GREEN "\033[0;32m"
-#define T_BLUE  "\033[0;34m"
+#define T_RED "\033[38;2;255;0;0m"
+#define T_GREEN "\033[38;2;0;255;0m"
+#define T_BLUE "\033[38;2;0;0;255m"
+#define T_YELLOW "\033[38;2;255;255;0m"
+#define T_CYAN "\033[38;2;0;255;255m"
 #define T_RESET "\033[0m"
-#define T_CYAN  "\033[0;36m"
+
+#define MAX_CONTENT_LENGTH 2048
+#define MAX_LINES 256
 
 #ifndef START_H
 #define START_H
+
+void title()
+{
+    printf(T_CYAN " ___________       ___________  ___          _________________            ____ \n" T_RESET);
+    printf(T_CYAN " | |      XX       | |     | |  |  |         |______   ______|            //XX  \n" T_RESET);
+    printf(T_CYAN " | |       XX      | |     | |  |  |                | |                  //  XX  \n" T_RESET);
+    printf(T_CYAN " | |        XX     | |     | |  |  |                | |                 //    XX  \n" T_RESET);
+    printf(T_CYAN " | |         XX    |_|_____|_|  |  |                | |                //      XX  \n" T_RESET);
+    printf(T_CYAN " | |          XX   | |          |  |                | |               //        XX  \n" T_RESET);
+    printf(T_CYAN " | |           XX  | |          |  |                | |              //==========XX  \n" T_RESET);
+    printf(T_CYAN " | |           //  | |     ___  |  |      ___       | |             //            XX  \n" T_RESET);
+    printf(T_CYAN " | |          //   | |     | |  |  |      | |       | |            //              XX  \n" T_RESET);
+    printf(T_CYAN " | |_________//    |_|_____|_|  |__|______|_|       |_|           //                XX  \n" T_RESET);
+}
 
 void welcome()
 {
@@ -33,17 +52,21 @@ void LoadScreen()
     printf(T_GREEN "[OK]: Start loading command help\n" T_RESET);
     printf(T_GREEN "[OK]: Command help is load\n" T_RESET);
     printf(T_GREEN "[OK]: Start loading command calc\n" T_RESET);
+    printf(T_GREEN "[OK]: Start loading command display\n" T_RESET);
+    printf(T_GREEN "[OK]: Start loading command display\n" T_RESET);
+    printf(T_GREEN "[OK]: Start loading command redact\n" T_RESET);
+    printf(T_GREEN "[OK]: Start loading command redact\n" T_RESET);
     printf(T_GREEN "[OK]: Command calc is load\n" T_RESET);
     printf(T_GREEN "[OK]: Start loading command edit\n" T_RESET);
-    printf(T_GREEN "[OK]: Command edit is load\n" T_RESET);
+    printf(T_GREEN "[OK]: Command editor is load\n" T_RESET);
     printf(T_GREEN "[OK]: Start loading command dltfetch\n" T_RESET);
-    printf(T_GREEN "[OK]: Command phnxfetch is load\n" T_RESET);
+    printf(T_GREEN "[OK]: Command dltfetch is load\n" T_RESET);
     printf(T_GREEN "[OK]: Start loading command ext\n" T_RESET);
     printf(T_GREEN "[OK]: Command ext is load\n");
     printf(T_GREEN "[OK]: Start loading command add\n" T_RESET);
     printf(T_GREEN "[OK]: Command add is load\n");
-    printf(T_GREEN "[OK]: Start loading command lf\n" T_RESET);
-    printf(T_GREEN "[OK]: Command lf is load\n");
+    printf(T_GREEN "[OK]: Start loading command lsf\n" T_RESET);
+    printf(T_GREEN "[OK]: Command lsf is load\n");
     printf(T_GREEN "[OK]: Initialization working all commands\n" T_RESET);
     printf(T_GREEN "[OK]: Optimization working all commands\n" T_RESET);
     printf(T_BLUE "[Loading is end!]\n" T_RESET);
