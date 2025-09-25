@@ -1,8 +1,15 @@
-/edit()
+#ifndef INTRO_H
+#define INTRO_H
+
+void intro();
+
+#endif
+
+//edit()
 #ifndef EDIT_H
 #define EDIT_H
 
-void edit();
+void editor();
 
 #endif
 
@@ -22,7 +29,7 @@ void help();
 
 #endif
 
-//files()
+//files();
 #ifndef FILES_H
 #define FILES_H
 
