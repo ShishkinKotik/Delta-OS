@@ -9,24 +9,34 @@
 //==================================
 //|            ЦВЕТА               |
 //==================================
-#define T_GREEN "\033[0;32m"
-#define T_RED   "\033[0;31m"
-#define T_CYAN  "\033[0;36m"
-#define T_BLUE  "\033[0;34m"
-#define T_YELLOW "\033[1;33m"
+#define T_RED "\033[38;2;255;0;0m"
+#define T_GREEN "\033[38;2;0;255;0m"
+#define T_BLUE "\033[38;2;0;0;255m"
+#define T_YELLOW "\033[38;2;255;255;0m"
+#define T_CYAN "\033[38;2;0;255;255m"
 #define T_RESET "\033[0m"
 
 #define MCL 256 // Максимальная длинна строки
 
-int main()
+int main(void)
 {
-    LoadScreen();
+    //title();
+    //LoadScreen();
     welcome();
     char command[MCL];
+    printf(T_GREEN "[input 'delta-install']\n" T_RESET);
     while (true) {
-        printf("❯  ");
+        printf("(DeltaOS) ❯ ");
         if (scanf("%255s", command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
+        }
+
+        if (strcmp(command, "delta-install") == 0) {
+            LoadScreen();
+        }
+
+        if (strcmp(command, "intro") == 0) {
+            intro();
         }
 
         if (strcmp(command, "calc") == 0) {
@@ -73,8 +83,8 @@ int main()
             printf(T_CYAN "[калькулятор завершил работу]\n" T_RESET);
         }
 
-        if (strcmp(command, "edit") == 0) {
-            edit();
+        else if (strcmp(command, "editor") == 0) {
+            editor();
         }
 
         if (strcmp(command, "dltfetch") == 0) {
@@ -85,7 +95,7 @@ int main()
             help();
         }
 
-        if (strcmp(command, "lf") == 0) {
+        if (strcmp(command, "lsf") == 0) {
             printf(T_CYAN "[все файлы для работы ОС]\n" T_RESET);
             files();
         }
@@ -100,9 +110,8 @@ int main()
             del();
         }
 
-        if (strcmp(command, "redfile") == 0) {
-            printf(T_CYAN "[редактирование файла]\n" T_RESET);
-            redact();
+        if (strcmp(command, "redact") == 0) {
+            redactFile();
         }
 
         if (strcmp(command, "ext") == 0) {
