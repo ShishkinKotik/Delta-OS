@@ -1,3 +1,10 @@
+#ifndef TITLE_OS_H
+#define TITLE_OS_H
+
+void title();
+
+#endif
+
 #ifndef WELCOME_H
 #define WELCOME_H
 
