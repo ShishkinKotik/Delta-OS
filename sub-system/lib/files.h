@@ -12,9 +12,23 @@ void del();
 
 #endif
 
+#ifndef DISPLAY_FILE_H
+#define DISPLAY_FILE_H
+
+void displayFile(const char *fileName);
+
+#endif
+
 #ifndef EDIT_FILE_H
 #define EDIT_FILE_H
 
-void redact();
+void redactFile();
+
+#endif
+
+#ifndef SAVE_H
+#define SAVE_H
+
+void save();
 
 #endif
