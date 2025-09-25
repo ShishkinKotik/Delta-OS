@@ -3,20 +3,24 @@
 #include <stdbool.h>
 #include "lib/commands.h"
 
-#define T_GREEN "\033[0;32m"
-#define T_RED   "\033[0;31m"
-#define T_CYAN  "\033[0;36m"
-#define T_BLUE  "\033[0;34m"
-#define T_YELLOW "\033[1;33m"
+#define T_RED "\033[38;2;255;0;0m"
+#define T_GREEN "\033[38;2;0;255;0m"
+#define T_BLUE "\033[38;2;0;0;255m"
+#define T_YELLOW "\033[38;2;255;255;0m"
+#define T_CYAN "\033[38;2;0;255;255m"
 #define T_RESET "\033[0m"
 
 #ifndef ADD_H
 #define ADD_H
 
-#define MFNL 256
+#define MFNL 256 //maximum file name length
 #define MAX_TOKEN_LENGTH 128
 #define MAX_FOLDER_NAME_LENGTH 128
+#define MAX_CONTENT_LENGTH 1024
+#define MAX_LINES 512
+#define MAX_LINE_LENGTH 1024
 
+/*add file */
 void add()
 {
     /*variables*/
@@ -45,6 +49,24 @@ void add()
     }
 }
 
+/*display content in file */
+void displayFile(const char *fileName)
+{
+    FILE * file = fopen(fileName, "r");
+    char line[MAX_LINES];
+
+    if (file == NULL) {
+        printf(T_RED "[ошибка открытия файла для чтения]\n" T_RESET);
+        return;
+    }
+
+    while (fgets(line, sizeof(line), file)) {
+        printf("%s\n", line);
+    }
+    fclose(file);
+}
+
+/*delete file */
 void del()
 {
     /*variables*/
@@ -69,8 +91,11 @@ void del()
     }
 }
 
-void redact()
+/*edit content in file */
+void redactFile()
 {
+    /*variables */
+
     char fileName[MFNL];
     char token[MAX_TOKEN_LENGTH];
     FILE * file = fopen(fileName, "w");
@@ -80,7 +105,7 @@ void redact()
     if (strcmp(token, "file") == 0) {
         printf(T_CYAN "[впешите имя файла для редактирования]: \n" T_RESET);
         scanf("%s\n", fileName);
-        edit();
+        editor();
     }
     if (file == NULL) {
         printf(T_RED "[ошибка открытия файла]\n" T_RESET);
@@ -89,7 +114,24 @@ void redact()
     else {
         printf(T_GREEN "[файл '%s' успешно открыт]\n" T_RESET, fileName);
     }
+}
 
+/*save content in file */
+void save()
+{
+    /*variables */
+    char fileName[MFNL];
+    char token[MAX_TOKEN_LENGTH];
+    char content[MAX_CONTENT_LENGTH];
+    FILE * file = fopen(fileName, "w+");
+
+    if (file == NULL) {
+        printf(T_RED "[ошибка открытия файла]\n" T_RESET);
+    }
+    else {
+        fprintf(file, "%s\n", content);
+        fclose(file);
+    }
 }
 
 #endif
