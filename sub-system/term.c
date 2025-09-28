@@ -15,6 +15,7 @@
 #define T_YELLOW "\033[38;2;255;255;0m"
 #define T_CYAN "\033[38;2;0;255;255m"
 #define T_RESET "\033[0m"
+#define T_MAGENTA "\033[0;35m"
 
 #define MCL 256 // Максимальная длинна строки
 
@@ -83,7 +84,7 @@ int main(void)
             printf(T_CYAN "[калькулятор завершил работу]\n" T_RESET);
         }
 
-        else if (strcmp(command, "editor") == 0) {
+        else if (strcmp(command, "dex") == 0) {
             editor();
         }
 
