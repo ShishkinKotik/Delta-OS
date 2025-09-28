@@ -6,6 +6,7 @@
 #define T_YELLOW "\033[38;2;255;255;0m"
 #define T_CYAN "\033[38;2;0;255;255m"
 #define T_RESET "\033[0m"
+#define T_MAGENTA "\033[0;35m"
 
 #define MAX_CONTENT_LENGTH 2048
 #define MAX_LINES 256
@@ -73,3 +74,4 @@ void LoadScreen()
 }
 
 #endif
+
