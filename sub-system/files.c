@@ -9,6 +9,7 @@
 #define T_YELLOW "\033[38;2;255;255;0m"
 #define T_CYAN "\033[38;2;0;255;255m"
 #define T_RESET "\033[0m"
+#define T_MAGENTA "\033[0;35m"
 
 #ifndef ADD_H
 #define ADD_H
@@ -116,22 +117,10 @@ void redactFile()
     }
 }
 
-/*save content in file */
-void save()
+/*list files*/
+void list()
 {
-    /*variables */
-    char fileName[MFNL];
-    char token[MAX_TOKEN_LENGTH];
-    char content[MAX_CONTENT_LENGTH];
-    FILE * file = fopen(fileName, "w+");
 
-    if (file == NULL) {
-        printf(T_RED "[ошибка открытия файла]\n" T_RESET);
-    }
-    else {
-        fprintf(file, "%s\n", content);
-        fclose(file);
-    }
 }
 
 #endif
