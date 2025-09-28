@@ -1,24 +1,35 @@
-#ifndef TITLE_OS_H
-#define TITLE_OS_H
+#ifndef ADD_H
+#define ADD_H
 
-void title();
-
-#endif
-
-#ifndef WELCOME_H
-#define WELCOME_H
-
-void welcome();
+void add();
 
 #endif
 
-#ifndef LOAD_H
-#define LOAD_H
+#ifndef DEL_H
+#define DEL_H
 
-void LoadScreen();
+void del();
 
 #endif
 
-#ifndef BOOT_SCREEN_H
-#define BOOT_SCREEN_H
+#ifndef DISPLAY_FILE_H
+#define DISPLAY_FILE_H
+
+void displayFile(const char *fileName);
+
+#endif
+
+#ifndef EDIT_FILE_H
+#define EDIT_FILE_H
+
+void redactFile();
+
+#endif
+
+#ifndef LIST_H
+#define LIST_H
+
+void list();
+
+#endif
 
