@@ -10,6 +10,7 @@
 #define T_YELLOW "\033[38;2;255;255;0m"
 #define T_CYAN "\033[38;2;0;255;255m"
 #define T_RESET "\033[0m"
+#define T_MAGENTA "\033[0;35m"
 
 
 #define MAX_LINES 512
@@ -30,8 +31,21 @@ void intro()
     printf(T_CYAN "И помните ОС предназначена для упрощённого использования терминала.\n" T_RESET);
 }
 
+void editorLogo()
+{
+    printf(T_MAGENTA "_________     \n" T_RESET);
+    printf(T_MAGENTA "| |===X X        ________           __\n" T_RESET);
+    printf(T_MAGENTA "| |    X X      / /    XX    XX    / /  \n" T_RESET);
+    printf(T_MAGENTA "| |     X X    / /      XX    XX  / / \n" T_RESET);
+    printf(T_MAGENTA "| |      X X  / /        XX    XX/ /   \n" T_RESET);
+    printf(T_MAGENTA "| |      / /  X X________xx     / /XX   \n" T_RESET);
+    printf(T_MAGENTA "| |     / /    X X             / /  XX  \n" T_RESET);
+    printf(T_MAGENTA "|_|____/_/      X X_____/_/   /_/    XX \n" T_RESET);
+}
+
 void editor()
 {
+    editorLogo();
     printf(T_BLUE "[текстовый редактор]\n" T_RESET);
     char lines[MAX_LINES][MAX_LINE_LENGTH];
     int lineCount = 0;
@@ -110,7 +124,7 @@ void print_fetch()
     printf(T_CYAN "                 ____________________________ \n" T_RESET);
     printf(T_CYAN "       //XX       deltaOSuser@DeltaOS~$ \n" T_RESET);
     printf(T_CYAN "      // XX       ---------------------------- \n" T_RESET);
-    printf(T_CYAN "     //   XX      [OS]: [DeltaOS v 0.0.0.6-a] \n" T_RESET);
+    printf(T_CYAN "     //   XX      [OS]: [DeltaOS v 0.0.0.9-a] \n" T_RESET);
     printf(T_CYAN "    //     XX     [Host]: [Delta Laptop 15-jd0xxs] \n" T_RESET);
     printf(T_CYAN "   //       XX    [Shell]: [bash, dlt-shell] \n" T_RESET);
     printf(T_CYAN "  //         XX   [Theme]: [non-gui] \n" T_RESET);
@@ -125,15 +139,16 @@ void help()
     const char frm_2[128] = T_BLUE  "|                                                                            |" T_RESET;
     const char intr[250] = T_YELLOW "|      1.intro - иснтрукция по работе с ОС                                   |" T_RESET;
     const char calc[250] = T_YELLOW "|      2.calc - калькулятор                                                  |" T_RESET;
-    const char edit[250] = T_YELLOW "|      3.editor - примитивный текстовый редактор                             |" T_RESET;
+    const char edit[250] = T_YELLOW "|      3.dex - примитивный текстовый редактор                             |" T_RESET;
     const char help[250] = T_YELLOW "|      4.help - вывод всех команд                                            |" T_RESET;
     const char ftch[250] = T_YELLOW "|      5.dltfetch - выводит логотип ОС а также информация о компьютере и ос  |" T_RESET;
     const char exit[250] = T_YELLOW "|      6.ext - выход и завершение работы терминала                           |" T_RESET;
     const char fils[250] = T_YELLOW "|      7.lsf - список файлов в помощью которых работает ос                   |" T_RESET;
     const char add[250] =  T_YELLOW "|      8.add - добавление с файлов                                           |" T_RESET;
     const char del[250] =  T_YELLOW "|      9.del - удаление файлов                                               |" T_RESET;
-    const char red[250] = T_YELLOW  "|      10.redact - редактирование файла                                      |" T_RESET;
-    const char dcf[250] = T_YELLOW  "|      11.display - просмотр содержимого файла                               |" T_RESET;
+    const char list[250] = T_YELLOW "|      10.list - список файлов которые вы создали                            |" T_RESET;
+    const char red[250] = T_YELLOW  "|      11.redact - редактирование файла                                      |" T_RESET;
+    const char dcf[250] = T_YELLOW  "|      12.display - просмотр содержимого файла                               |" T_RESET;
     const char frm_3[128] = T_BLUE  "|                                                                            |" T_RESET;
     const char frm_1[128] = T_BLUE  "[============================================================================]" T_RESET;
 
@@ -163,8 +178,9 @@ void files()
     const char add_dot_h[115] = T_CYAN " [files.h] \n" T_RESET;
     const char strt_dot_h[115] = T_CYAN " [start_screen.h]\n" T_RESET;
     const char comm_dot_h[115] = T_CYAN " [commands.h] \n" T_RESET;
-    const char start_dot_sh[115] = T_CYAN "[bash]: \n [start.sh] \n" T_RESET;
+    const char start_dot_sh[115] = T_GREEN "[bash]: \n [build.sh] \n" T_RESET;
     const char logo_dot_txt[115] = T_CYAN "[txt]: \n [logo.txt] \n" T_RESET;
+    const char bin_file[115] = T_MAGENTA "[bin]: \n [term.o]\n" T_RESET;
 
     printf("%s", term_dot_c);
     printf("%s", comm_dot_c);
@@ -175,7 +191,7 @@ void files()
     printf("%s", strt_dot_c);
     printf("%s", start_dot_sh);
     printf("%s", logo_dot_txt);
+    printf("%s", bin_file);
 }
 
 #endif
-
