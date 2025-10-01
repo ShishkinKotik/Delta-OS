@@ -33,7 +33,7 @@ void add()
     printf(T_CYAN "[введите что будем добавлять]: \n" T_RESET);
     scanf("%s\n", &*token);
     if (strcmp(token, "file") == 0) {
-        printf(T_CYAN "[введите имя файла]: \n" T_RESET);
+        printf(T_CYAN "[🖹 введите имя файла]: \n" T_RESET);
         scanf("%s\n", &*fileName);
         printf(T_CYAN "[файл '%s' создан]\n" T_RESET, fileName);
 
@@ -79,7 +79,7 @@ void del()
     printf(T_CYAN "[введите что будем удалять]: \n" T_RESET);
     scanf("%s\n", &*token);
     if (strcmp(token, "file") == 0) {
-        printf(T_CYAN "[введите имя файла]: \n" T_RESET);
+        printf(T_CYAN "[🖹 введите имя файла]: \n" T_RESET);
         scanf("%s\n", &*fileName);
 
         int isDeleted = 0;
@@ -104,7 +104,7 @@ void redactFile()
     printf(T_CYAN "[впешите что будем редактировать]: \n" T_RESET);
     scanf("%s\n", token);
     if (strcmp(token, "file") == 0) {
-        printf(T_CYAN "[впешите имя файла для редактирования]: \n" T_RESET);
+        printf(T_CYAN "[🖹 впешите имя файла для редактирования]: \n" T_RESET);
         scanf("%s\n", fileName);
         editor();
     }
