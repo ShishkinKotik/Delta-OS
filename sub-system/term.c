@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <sys/types.h>
 #include "lib/commands.h"
 #include "lib/start_screen.h"
 #include "lib/files.h"
+#include "lib/simple_commands.h"
 
 //==================================
 //|            ЦВЕТА               |
@@ -19,6 +21,11 @@
 
 #define MCL 256 // Максимальная длинна строки
 
+typedef struct {
+    char command[MCL];
+    uint numberOfCommands;
+} ConsoleVars;
+
 int main(void)
 {
     //title();
@@ -27,7 +34,7 @@ int main(void)
     char command[MCL];
     printf(T_GREEN "[input 'delta-install']\n" T_RESET);
     while (true) {
-        printf("(DeltaOS) ❯ ");
+        printf("(DeltaOS) ❱ ");
         if (scanf("%255s", command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
         }
@@ -41,7 +48,7 @@ int main(void)
         }
 
         if (strcmp(command, "calc") == 0) {
-            printf(T_BLUE "[калькулятор]\n" T_RESET);
+            printf(T_BLUE "[🖩 калькулятор]\n" T_RESET);
             double FRST_NUMBER;
             double SCND_NUMBER;
             char SYMBOL;
@@ -88,7 +95,7 @@ int main(void)
             editor();
         }
 
-        if (strcmp(command, "dltfetch") == 0) {
+        if (strcmp(command, "dlt-fetch") == 0) {
             print_fetch();
         }
 
@@ -99,6 +106,10 @@ int main(void)
         if (strcmp(command, "lsf") == 0) {
             printf(T_CYAN "[все файлы для работы ОС]\n" T_RESET);
             files();
+        }
+
+        if (strcmp(command, "list") == 0 ) {
+            list();
         }
 
         if (strcmp(command, "add") == 0) {
