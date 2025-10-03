@@ -9,7 +9,7 @@ echo "✓status: version=v.0.0.0.9-a $STATUS_VERSION"
 echo "✓status: booting=true $STATUS_BOOTING"
 echo "✓status: OS=DeltaOS Linux $STATUS_OS"
 mkdir os
-clang term.c start.c commands.c files.c simple_commands.c -o os/term
+clang term.c commands.c files.c simple_comms.c -o os/term
 os/term
 chmod +x ~/os/term
 echo "✓ending os"
