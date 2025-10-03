@@ -20,31 +20,39 @@
 #define MAX_CONTENT_LENGTH 1024
 #define MAX_LINES 512
 #define MAX_LINE_LENGTH 1024
+#define MAX_FOLDER_LENGTH 128
+
+struct FileExplorer {
+    /*variables*/
+    char fileName[MFNL];
+    char token[MAX_TOKEN_LENGTH];
+    char line[MAX_LINES];
+    char folderName[MAX_FOLDER_LENGTH];
+    FILE * file;
+    int isCreated;
+    int isDeleted;
+};
 
 /*add file */
 void add()
 {
-    /*variables*/
-    char fileName[MFNL];
-    char token[MAX_TOKEN_LENGTH];
-    char folderName[MAX_FOLDER_NAME_LENGTH];
-    FILE * file;
+    struct FileExplorer var = {0};
 
     printf(T_CYAN "[введите что будем добавлять]: \n" T_RESET);
-    scanf("%s\n", &*token);
-    if (strcmp(token, "file") == 0) {
+    scanf("%s\n", var.token);
+    if (strcmp(var.token, "file") == 0) {
         printf(T_CYAN "[🖹 введите имя файла]: \n" T_RESET);
-        scanf("%s\n", &*fileName);
-        printf(T_CYAN "[файл '%s' создан]\n" T_RESET, fileName);
+        scanf("%s\n", var.fileName);
+        printf(T_CYAN "[файл '%s' создан]\n" T_RESET, var.fileName);
 
         int isCreated = 0;
-        file = fopen(fileName, "w");
-        if (file == NULL) {
+        var.file = fopen(var.fileName, "w");
+        if (var.file == NULL) {
             printf(T_RED "[ошибка создания файла]\n" T_RESET);
             isCreated = 1;
         }
         else {
-            fclose(file);
+            fclose(var.file);
             isCreated = 1;
         }
     }
@@ -53,67 +61,37 @@ void add()
 /*display content in file */
 void displayFile(const char *fileName)
 {
-    FILE * file = fopen(fileName, "r");
-    char line[MAX_LINES];
+    struct FileExplorer var = {0};
 
-    if (file == NULL) {
+    if (var.file == NULL) {
         printf(T_RED "[ошибка открытия файла для чтения]\n" T_RESET);
         return;
     }
 
-    while (fgets(line, sizeof(line), file)) {
-        printf("%s\n", line);
+    while (fgets(var.line, sizeof(var.line), var.file)) {
+        printf("%s\n", var.line);
     }
-    fclose(file);
+    fclose(var.file);
 }
 
 /*delete file */
 void del()
 {
-    /*variables*/
-    char fileName[MFNL];
-    char token[MAX_TOKEN_LENGTH];
-    char folderName[MAX_FOLDER_NAME_LENGTH];
-    FILE * file;
+    struct FileExplorer var = {0};
 
     printf(T_CYAN "[введите что будем удалять]: \n" T_RESET);
-    scanf("%s\n", &*token);
-    if (strcmp(token, "file") == 0) {
+    scanf("%s\n", &*var.token);
+    if (strcmp(var.token, "file") == 0) {
         printf(T_CYAN "[🖹 введите имя файла]: \n" T_RESET);
-        scanf("%s\n", &*fileName);
+        scanf("%s\n", &*var.fileName);
 
         int isDeleted = 0;
-        if (remove(fileName) == 0) {
-            printf(T_GREEN "[файл '%s' удалён!]\n" T_RESET, fileName);
+        if (remove(var.fileName) == 0) {
+            printf(T_GREEN "[файл '%s' удалён!]\n" T_RESET, var.fileName);
         }
         else {
             printf(T_RED "[ошибка удаления файла]\n" T_RESET);
         }
-    }
-}
-
-/*edit content in file */
-void redactFile()
-{
-    /*variables */
-
-    char fileName[MFNL];
-    char token[MAX_TOKEN_LENGTH];
-    FILE * file = fopen(fileName, "w");
-
-    printf(T_CYAN "[впешите что будем редактировать]: \n" T_RESET);
-    scanf("%s\n", token);
-    if (strcmp(token, "file") == 0) {
-        printf(T_CYAN "[🖹 впешите имя файла для редактирования]: \n" T_RESET);
-        scanf("%s\n", fileName);
-        editor();
-    }
-    if (file == NULL) {
-        printf(T_RED "[ошибка открытия файла]\n" T_RESET);
-        return;
-    }
-    else {
-        printf(T_GREEN "[файл '%s' успешно открыт]\n" T_RESET, fileName);
     }
 }
 
