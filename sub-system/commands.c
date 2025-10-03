@@ -19,6 +19,15 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
+struct DexStructure {
+    char lines[MAX_LINES][MAX_LINE_LENGTH];
+    char inputLine[MAX_LINE_LENGTH];
+    char filename[100];
+    char mode;
+    int lineCount;
+    FILE * file;
+};
+
 void editorLogo()
 {
     printf(T_MAGENTA "_________     \n" T_RESET);
@@ -33,76 +42,74 @@ void editorLogo()
 
 void editor()
 {
+    struct DexStructure *dex = malloc(sizeof(struct DexStructure));
+    struct DexStructure *var = {0};
+
     editorLogo();
     printf(T_BLUE "[🗒 текстовый редактор]\n" T_RESET);
-    char lines[MAX_LINES][MAX_LINE_LENGTH];
-    int lineCount = 0;
-    char inputLine[MAX_LINE_LENGTH];
-    char filename[100];
 
     // Запрос имени файла
     printf(T_CYAN "[Введите имя файла для редактирования]: " T_RESET);
-    scanf("%s", filename);
+    scanf("%s", var->filename);
     getchar(); // Удаляем символ новой строки после ввода имени файла
 
     // Открытие файла для чтения
-    FILE *file = fopen(filename, "r");
-    if (file == NULL) {
-        fprintf(stderr, T_RED "[err]: [не удалось открыть файл: %s]\n" T_RESET, filename);
+    var->file = fopen(var->filename, "r");
+    if (var->file == NULL) {
+        fprintf(stderr, T_RED "[err]: [не удалось открыть файл: %s]\n" T_RESET, var->filename);
         return;
     }
 
     // Чтение содержимого файла
-    while (fgets(lines[lineCount], sizeof(lines[lineCount]), file) != NULL && lineCount < MAX_LINES) {
-        lineCount++;
+    while (fgets(var->lines[var->lineCount], sizeof(var->lines[var->lineCount]), var->file) != NULL && var->lineCount < MAX_LINES) {
+        var->lineCount++;
     }
-    fclose(file);
+    fclose(var->file);
 
     // Модальный ввод
     printf(T_CYAN "[нажмите 'w' для ввода текста, 'r' для чтения, 'q' для выхода]: \n" T_RESET);
-    char mode;
-    while ((mode = getchar()) != 'q') {
-        if (mode == 'w') {
+    while ((var->mode = getchar()) != 'q') {
+        if (var->mode == 'w') {
             printf(T_CYAN "[начните ввод (введите 'E' для выхода)]: \n" T_RESET);
-            while (lineCount < MAX_LINES) {
-                printf("%d: ", lineCount + 1);
-                if (fgets(inputLine, sizeof(inputLine), stdin) == NULL) {
+            while (var->lineCount < MAX_LINES) {
+                printf("%d: ", var->lineCount + 1);
+                if (fgets(var->lines[var->lineCount], sizeof(var->lines[var->lineCount]), stdin) == NULL) {
                     fprintf(stderr, T_RED "[err]: [ошибка чтения строки.]\n" T_RESET);
                     break;
                 }
 
-                inputLine[strcspn(inputLine, "\n")] = 0;
+                var->lines[var->lineCount][strcspn(var->lines[var->lineCount], "\n")] = 0;
 
-                if (strlen(inputLine) == 0 || strcmp(inputLine, "E") == 0) {
+                if (strlen(var->lines[var->lineCount]) == 0 || strcmp(var->lines[var->lineCount], "E") == 0) {
                     break;
                 }
 
-                strcpy(lines[lineCount], inputLine);
-                lineCount++;
+                strcpy(var->lines[var->lineCount], var->lines[var->lineCount]);
+                var->lineCount++;
 
-                if (lineCount >= MAX_LINES) {
+                if (var->lineCount >= MAX_LINES) {
                     printf(T_YELLOW "[warn]: [достигнуто максимальное количество строк. Завершите ввод]\n" T_RESET);
                     break;
                 }
             }
 
-            if (mode == 'r') {
-                displayFile(filename);
+            if (var->mode == 'r') {
+                displayFile(var->filename);
             }
         }
     }
 
     // Сохранение изменений в файл
-    file = fopen(filename, "w");
-    if (file == NULL) {
-        fprintf(stderr, T_RED "[err]: [не удалось открыть файл для записи: %s]\n" T_RESET, filename);
+    var->file = fopen(var->filename, "w");
+    if (var->file == NULL) {
+        fprintf(stderr, T_RED "[err]: [не удалось открыть файл для записи: %s]\n" T_RESET, var->filename);
         return;
     }
 
-    for (int i = 0; i < lineCount; i++) {
-        fprintf(file, "%s\n", lines[i]);
+    for (int i = 0; i < var->lineCount; i++) {
+        fprintf(var->file, "%s\n", var->lines[i]);
     }
-    fclose(file);
+    fclose(var->file);
 
     printf(T_CYAN "[Редактор завершил работу]\n" T_RESET);
 }
@@ -120,4 +127,3 @@ void print_fetch()
 }
 
 #endif
-
