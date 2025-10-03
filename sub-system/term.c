@@ -4,9 +4,8 @@
 #include <stdbool.h>
 #include <sys/types.h>
 #include "lib/commands.h"
-#include "lib/start_screen.h"
+#include "lib/simple_coms.h"
 #include "lib/files.h"
-#include "lib/simple_commands.h"
 
 //==================================
 //|            ЦВЕТА               |
@@ -23,7 +22,7 @@
 
 typedef struct {
     char command[MCL];
-    uint numberOfCommands;
+    unsigned int numberOfCommands;
 } ConsoleVars;
 
 int main(void)
@@ -122,11 +121,7 @@ int main(void)
             del();
         }
 
-        if (strcmp(command, "redact") == 0) {
-            redactFile();
-        }
-
-        if (strcmp(command, "ext") == 0) {
+        if (strcmp(command, "quit") == 0) {
             printf(T_GREEN "[завершение программы]\n" T_RESET);
             break;
         }
