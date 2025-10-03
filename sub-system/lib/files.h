@@ -19,13 +19,6 @@ void displayFile(const char *fileName);
 
 #endif
 
-#ifndef EDIT_FILE_H
-#define EDIT_FILE_H
-
-void redactFile();
-
-#endif
-
 #ifndef LIST_H
 #define LIST_H
 
