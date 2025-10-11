@@ -20,33 +20,32 @@
 
 #define MCL 256 // Максимальная длинна строки
 
-typedef struct {
+struct console {
     char command[MCL];
     unsigned int numberOfCommands;
-} ConsoleVars;
+    char *fileName;
+};
 
 int main(void)
 {
     //title();
     //LoadScreen();
     welcome();
-    char command[MCL];
-    printf(T_GREEN "[input 'delta-install']\n" T_RESET);
+    struct console console;
     while (true) {
-        printf("(DeltaOS) ❱ ");
-        if (scanf("%255s", command) != 1) {
+        printf("❱ ");
+        if (scanf("%255s", console.command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
         }
-
-        if (strcmp(command, "delta-install") == 0) {
+        if (strcmp(console.command, "delta-install") == 0) {
             LoadScreen();
         }
 
-        if (strcmp(command, "intro") == 0) {
+        if (strcmp(console.command, "intro") == 0) {
             intro();
         }
 
-        if (strcmp(command, "calc") == 0) {
+        if (strcmp(console.command, "calc") == 0) {
             printf(T_BLUE "[🖩 калькулятор]\n" T_RESET);
             double FRST_NUMBER;
             double SCND_NUMBER;
@@ -90,38 +89,43 @@ int main(void)
             printf(T_CYAN "[калькулятор завершил работу]\n" T_RESET);
         }
 
-        else if (strcmp(command, "dex") == 0) {
+        else if (strcmp(console.command, "dex") == 0) {
             editor();
         }
 
-        if (strcmp(command, "dlt-fetch") == 0) {
+        if (strcmp(console.command, "dlt-fetch") == 0) {
             print_fetch();
         }
 
-        if (strcmp(command, "help") == 0) {
+        if (strcmp(console.command, "help") == 0) {
             help();
         }
 
-        if (strcmp(command, "lsf") == 0) {
+        if (strcmp(console.command, "lsf") == 0) {
             printf(T_CYAN "[все файлы для работы ОС]\n" T_RESET);
             files();
         }
 
-        if (strcmp(command, "list") == 0 ) {
+        if (strcmp(console.command, "list") == 0 ) {
             list();
         }
 
-        if (strcmp(command, "add") == 0) {
+        if (strcmp(console.command, "add") == 0) {
             printf(T_CYAN "[добавление файла]\n" T_RESET);
             add();
         }
 
-        if (strcmp(command, "del") == 0) {
+        if (strcmp(console.command, "del") == 0) {
             printf(T_CYAN "[удаление файла]\n" T_RESET);
             del();
         }
 
-        if (strcmp(command, "quit") == 0) {
+        if (strcmp(console.command, "display") == 0) {
+            printf(T_CYAN "[содержимое файла]\n" T_RESET);
+            displayFile(console.fileName);
+        }
+
+        if (strcmp(console.command, "quit") == 0) {
             printf(T_GREEN "[завершение программы]\n" T_RESET);
             break;
         }
