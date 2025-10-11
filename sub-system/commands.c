@@ -114,16 +114,17 @@ void editor()
     printf(T_CYAN "[Редактор завершил работу]\n" T_RESET);
 }
 
+
 void print_fetch()
 {
-    printf(T_CYAN "      _____            User        DeltaDev\n" T_RESET);
-    printf(T_CYAN "  /L  / /L L  /L       ---------------------------\n" T_RESET);
-    printf(T_CYAN "  L L/ /  L L/ /       🖫 OS          DeltaOS Linux\n" T_RESET);
-    printf(T_CYAN "   L/ /    L L/        🗃 Kernel      Linux\n" T_RESET);
-    printf(T_CYAN "   / /      L L        🗔 Shell       dshell, bash\n" T_RESET);
-    printf(T_CYAN "  / /  UwU   L L       🗂 PKGS        non\n" T_RESET);
-    printf(T_CYAN " / /__________L L      🖷 Terminal    DeltaTerminal\n" T_RESET);
-    printf(T_CYAN "/_/____________L_L     🖳 Host        Laptop\n" T_RESET);
+    printf(T_CYAN "      _____            User:        DeltaDev\n" T_RESET);
+    printf(T_CYAN "      / /L L          ---------------------------\n" T_RESET);
+    printf(T_CYAN "     / /  L L          🖫 OS:          DeltaOS Linux\n" T_RESET);
+    printf(T_CYAN "    / /    L L         🗃 Kernel:      Linux\n" T_RESET);
+    printf(T_CYAN "   / /      L L        🗔 Shell:       bash\n" T_RESET);
+    printf(T_CYAN "  / /        L L       🗂 PKGS:        no\n" T_RESET);
+    printf(T_CYAN " / /          L L      🖷 Terminal:    DeltaTerminal\n" T_RESET);
+    printf(T_CYAN "/_/____________L_L     🖳 Host:        Laptop\n" T_RESET);
 }
 
 #endif
