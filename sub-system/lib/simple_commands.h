@@ -22,7 +22,7 @@ void files();
 #ifndef TITLE_OS_H
 #define TITLE_OS_H
 
-void title();
+void write_logo();
 
 #endif
 
@@ -39,3 +39,4 @@ void welcome();
 void LoadScreen();
 
 #endif
+
