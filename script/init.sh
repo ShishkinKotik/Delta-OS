@@ -1,5 +1,3 @@
-echo "cloning repo"
-git clone https://github.com/ShishkinKotik/Delta-OS
 cd ~/Delta-OS/sub-system
 echo "✓starting OS..."
 $STATUS_BOOTING
