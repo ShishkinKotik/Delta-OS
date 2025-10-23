@@ -38,49 +38,49 @@ struct file_explorer {
     char folderName[MAX_FOLDER_LENGTH];
     char cwd[MAX_FOLDER_NAME_LENGTH];
     FILE * file;
+    int numFiles;
     int isCreated;
     int isDeleted;
     int isDisplaying;
 };
 
 /*add file */
-void add()
+void add_file()
 {
     struct file_explorer var;
 
-    printf(T_CYAN "[введите что будем добавлять(file/dir)]: \n" T_RESET);
-    scanf("%s\n", var.token);
-    if (strcmp(var.token, "file") == 0) {
-        printf(T_CYAN "[🖹 введите имя файла]: \n" T_RESET);
-        scanf("%s\n", var.fileName);
-        printf(T_CYAN "[файл '%s' создан]\n" T_RESET, var.fileName);
+    printf(T_CYAN "[🖹 введите имя файла]: \n" T_RESET);
+    scanf("%s\n", var.fileName);
+    printf(T_CYAN "[файл '%s' создан]\n" T_RESET, var.fileName);
 
-        int isCreated = 0;
-        var.file = fopen(var.fileName, "a");
-        if (var.file == NULL) {
-            printf(T_RED "[ошибка создания файла]\n" T_RESET);
-            var.isCreated = 0;
-        }
-        else {
-            fclose(var.file);
-            var.isCreated = 1;
-        }
+    int isCreated = 0;
+    var.file = fopen(var.fileName, "w");
+    if (var.file == NULL) {
+        printf(T_RED "[ошибка создания файла]\n" T_RESET);
+        var.isCreated = 0;
     }
+    else {
+        fclose(var.file);
+        var.isCreated = 1;
+    }
+}
 
-    else if (strcmp(var.token, "dir") == 0) {
-        printf(T_CYAN "[🖹 введите имя папки]: \n" T_RESET);
-        scanf("%s\n", var.folderName);
-        mkdir(var.folderName, 0777);
-        printf(T_CYAN "[папка '%s' создана]\n" T_RESET, var.folderName);
+void add_dir()
+{
+    struct file_explorer var;
 
-        if (var.file == NULL) {
-            printf(T_RED "[ошибка создания папки]\n" T_RESET);
-            var.isCreated = 1;
-        }
-        else {
-            fclose(var.file);
-            var.isCreated = 0;
-        }
+    printf(T_CYAN "[🖹 введите имя папки]: \n" T_RESET);
+    scanf("%s\n", var.folderName);
+    mkdir(var.folderName, 0777);
+    printf(T_CYAN "[папка '%s' создана]\n" T_RESET, var.folderName);
+
+    if (var.file == NULL) {
+        printf(T_RED "[ошибка создания папки]\n" T_RESET);
+        var.isCreated = 1;
+    }
+    else {
+        fclose(var.file);
+        var.isCreated = 0;
     }
 }
 
@@ -150,14 +150,14 @@ void del()
 /*go to directory */
 void goToDir()
 {
-
+    struct file_explorer var;
 }
 
 void showThisDir()
 {
     struct file_explorer var = {0};
     if (getcwd(var.cwd, sizeof(var.cwd)) != NULL) {
-        printf(T_CYAN "[🗀 текущая папка: '%s']: " T_RESET, var.cwd);
+        printf(T_CYAN "[🗀 текущая папка: '%s']\n" T_RESET, var.cwd);
     }
     else {
         printf(T_RED "[err]: [удалось определить путь к папке]\n" T_RESET);
@@ -167,5 +167,9 @@ void showThisDir()
 /*list files*/
 void list()
 {
+    struct file_explorer var;
+    var.numFiles = 1;
+    printf(T_MAGENTA "[всего ваших файлов]: '%d'\n" T_RESET, var.numFiles);
+    printf(T_CYAN "[имя файла]: '%s'\n" T_RESET, var.fileName);
 
 }
