@@ -1,27 +1,41 @@
-#ifndef ADD_H
-#define ADD_H
+#ifndef SIMPLE_COMMANDS_INTRO_H
+#define SIMPLE_COMMANDS_INTRO_H
 
-void add();
-
-#endif
-
-#ifndef DEL_H
-#define DEL_H
-
-void del();
+void intro();
 
 #endif
 
-#ifndef DISPLAY_FILE_H
-#define DISPLAY_FILE_H
+#ifndef SIMPLE_COMMANDS_HELP_H
+#define SIMPLE_COMMANDS_HELP_H
 
-void displayFile(const char *fileName);
+void help();
 
 #endif
 
-#ifndef LIST_H
-#define LIST_H
+#ifndef SIMPLE_COMMANDS_FILES_H
+#define SIMPLE_COMMANDS_FILES_H
 
-void list();
+void files();
+
+#endif
+
+#ifndef TITLE_OS_H
+#define TITLE_OS_H
+
+void write_logo();
+
+#endif
+
+#ifndef WELCOME_H
+#define WELCOME_H
+
+void welcome();
+
+#endif
+
+#ifndef LOAD_H
+#define LOAD_H
+
+void LoadScreen();
 
 #endif
