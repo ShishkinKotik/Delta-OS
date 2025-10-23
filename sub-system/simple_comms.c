@@ -93,7 +93,7 @@ void files()
 }
 
 
-void title()
+void write_logo()
 {
     printf(T_CYAN " ___________       ___________  ___          _________________            ____ \n" T_RESET);
     printf(T_CYAN " | |      XX       | |     | |  |  |         |______   ______|            //XX  \n" T_RESET);
