@@ -18,7 +18,7 @@
 #define T_RESET "\033[0m"
 #define T_MAGENTA "\033[0;35m"
 
-#define MCL 256 // Максимальная длинна строки
+#define MCL 255 // Максимальная длинна строки
 
 struct console {
     char command[MCL];
@@ -28,7 +28,6 @@ struct console {
 
 int main(void)
 {
-    //title();
     //LoadScreen();
     welcome();
     struct console console;
@@ -36,9 +35,6 @@ int main(void)
         printf("❱ ");
         if (scanf("%255s", console.command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
-        }
-        if (strcmp(console.command, "delta-install") == 0) {
-            LoadScreen();
         }
 
         if (strcmp(console.command, "intro") == 0) {
@@ -98,6 +94,8 @@ int main(void)
         }
 
         if (strcmp(console.command, "help") == 0) {
+            console.numberOfCommands = 14;
+            printf(T_CYAN "[всего команд]: '%d'\n" T_RESET, console.numberOfCommands);
             help();
         }
 
@@ -110,9 +108,18 @@ int main(void)
             list();
         }
 
-        if (strcmp(console.command, "add") == 0) {
+        if (strcmp(console.command, "std") == 0) {
+            showThisDir();
+        }
+
+        if (strcmp(console.command, "add-file") == 0) {
             printf(T_CYAN "[добавление файла]\n" T_RESET);
-            add();
+            add_file();
+        }
+
+        if (strcmp(console.command, "add-dir") == 0) {
+            printf(T_CYAN "[добавление папки]\n" T_RESET);
+            add_dir();
         }
 
         if (strcmp(console.command, "del") == 0) {
