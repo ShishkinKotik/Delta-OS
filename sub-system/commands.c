@@ -21,15 +21,6 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-// struct DexStructure {
-//     char lines[MAX_LINES][MAX_LINE_LENGTH];
-//     char inputLine[MAX_LINE_LENGTH];
-//     char filename[100];
-//     char mode;
-//     int lineCount;
-//     FILE * file;
-// };
-
 void editorLogo()
 {
     printf(T_MAGENTA "_________     \n" T_RESET);
