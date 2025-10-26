@@ -12,6 +12,7 @@
     #include <unistd.h>
     #include <sys/stat.h>
     #include <dirent.h>
+    #include <stdlib.h>
 #endif
 
 #define T_RED "\033[38;2;255;0;0m"
@@ -148,9 +149,14 @@ void del()
 }
 
 /*go to directory */
-void goToDir()
+void goToDir(const char *path)
 {
-    struct file_explorer var;
+    if (chdir(path) == 0) {
+        printf(T_GREEN "[🗀 Успешно перешли в директорию]: %s\n" T_RESET, path);
+    }
+    else {
+        perror("Ошибка при переходе в директорию");
+    }
 }
 
 void showThisDir()
@@ -167,9 +173,21 @@ void showThisDir()
 /*list files*/
 void list()
 {
-    struct file_explorer var;
-    var.numFiles = 1;
-    printf(T_MAGENTA "[всего ваших файлов]: '%d'\n" T_RESET, var.numFiles);
-    printf(T_CYAN "[имя файла]: '%s'\n" T_RESET, var.fileName);
+    struct dirent *de;  // Структура для хранения информации о файлах
+    DIR *dr = opendir(".");  // Открытие текущей директории
 
+    if (dr == NULL) {  // Проверка на успешное открытие
+        printf("Не удалось открыть текущую директорию.\n");
+        return;
+    }
+
+    printf(T_CYAN "[🖹 Файлы в текущей директории]:\n" T_RESET);
+    while ((de = readdir(dr)) != NULL) {  // Чтение списка файлов
+        // Пропускаем . и ..
+        if (de->d_name[0] != '.') {
+            printf("%s\n", de->d_name);  // Вывод имени файла
+        }
+    }
+
+    closedir(dr);
 }
