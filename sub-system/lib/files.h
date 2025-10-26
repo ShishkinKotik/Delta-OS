@@ -33,6 +33,13 @@ void showThisDir();
 
 #endif
 
+#ifndef GO_TO_DIR_H
+#define GO_TO_DIR_H
+
+void goToDir(const char *path);
+
+#endif
+
 #ifndef LIST_H
 #define LIST_H
 
