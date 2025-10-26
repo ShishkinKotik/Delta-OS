@@ -24,11 +24,11 @@ struct console {
     char command[MCL];
     unsigned int numberOfCommands;
     char *fileName;
+    char *folderName;
 };
 
 int main(void)
 {
-    //LoadScreen();
     welcome();
     struct console console;
     while (true) {
@@ -94,7 +94,7 @@ int main(void)
         }
 
         if (strcmp(console.command, "help") == 0) {
-            console.numberOfCommands = 14;
+            console.numberOfCommands = 13;
             printf(T_CYAN "[всего команд]: '%d'\n" T_RESET, console.numberOfCommands);
             help();
         }
@@ -110,6 +110,11 @@ int main(void)
 
         if (strcmp(console.command, "std") == 0) {
             showThisDir();
+        }
+
+        if (strcmp(console.command, "gtd") == 0) {
+            const char *dirPath = console.folderName;
+            goToDir(dirPath);
         }
 
         if (strcmp(console.command, "add-file") == 0) {
