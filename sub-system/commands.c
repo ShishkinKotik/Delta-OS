@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <sys/unistd.h>
 #include "lib/files.h"
-#include "lib/simple_coms.h"
+#include "lib/simple_comms.h"
 
 #define T_RED "\033[38;2;255;0;0m"
 #define T_GREEN "\033[38;2;0;255;0m"
