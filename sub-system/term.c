@@ -31,8 +31,9 @@ int main(void)
 {
     welcome();
     struct console console;
+
     while (true) {
-        printf("❱ ");
+        printf("#> ");
         if (scanf("%255s", console.command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
         }
@@ -41,7 +42,7 @@ int main(void)
             intro();
         }
 
-        if (strcmp(console.command, "calc") == 0) {
+        else if (strcmp(console.command, "calc") == 0) {
             printf(T_BLUE "[🖩 калькулятор]\n" T_RESET);
             double FRST_NUMBER;
             double SCND_NUMBER;
@@ -89,57 +90,61 @@ int main(void)
             editor();
         }
 
-        if (strcmp(console.command, "dlt-fetch") == 0) {
+        else if (strcmp(console.command, "dlt-fetch") == 0) {
             print_fetch();
         }
 
-        if (strcmp(console.command, "help") == 0) {
+        else if (strcmp(console.command, "help") == 0) {
             console.numberOfCommands = 13;
             printf(T_CYAN "[всего команд]: '%d'\n" T_RESET, console.numberOfCommands);
             help();
         }
 
-        if (strcmp(console.command, "lsf") == 0) {
+        else if (strcmp(console.command, "lsf") == 0) {
             printf(T_CYAN "[все файлы для работы ОС]\n" T_RESET);
             files();
         }
 
-        if (strcmp(console.command, "list") == 0 ) {
+        else if (strcmp(console.command, "list") == 0 ) {
             list();
         }
 
-        if (strcmp(console.command, "std") == 0) {
+        else if (strcmp(console.command, "std") == 0) {
             showThisDir();
         }
 
-        if (strcmp(console.command, "gtd") == 0) {
+        else if (strcmp(console.command, "gtd") == 0) {
             const char *dirPath = console.folderName;
             goToDir(dirPath);
         }
 
-        if (strcmp(console.command, "add-file") == 0) {
+        else if (strcmp(console.command, "add-file") == 0) {
             printf(T_CYAN "[добавление файла]\n" T_RESET);
             add_file();
         }
 
-        if (strcmp(console.command, "add-dir") == 0) {
+        else if (strcmp(console.command, "add-dir") == 0) {
             printf(T_CYAN "[добавление папки]\n" T_RESET);
             add_dir();
         }
 
-        if (strcmp(console.command, "del") == 0) {
+        else if (strcmp(console.command, "del") == 0) {
             printf(T_CYAN "[удаление файла]\n" T_RESET);
             del();
         }
 
-        if (strcmp(console.command, "display") == 0) {
+        else if (strcmp(console.command, "display") == 0) {
             printf(T_CYAN "[содержимое файла]\n" T_RESET);
             displayFile(console.fileName);
         }
 
-        if (strcmp(console.command, "quit") == 0) {
+        else if (strcmp(console.command, "quit") == 0) {
             printf(T_GREEN "[завершение программы]\n" T_RESET);
             break;
+        }
+
+        else {
+            printf(T_RED "[err]: [неизвестная команда!]\n" T_RESET);
         }
 
         int c;
