@@ -16,7 +16,8 @@
 
 #define MAX_LINES 512
 #define MAX_LINE_LENGTH 1024
-#define MAX_CONTENT_LENGTH 1024
+#define MAX_CONTENT_LENGTH 2048
+#define MAX_ARGUMENT_LENGTH 256
 
 #ifndef COMMANDS_H
 #define COMMANDS_H
@@ -46,25 +47,21 @@ void editor()
     editorLogo();
     printf(T_BLUE "[🗒 текстовый редактор]\n" T_RESET);
 
-    // Запрос имени файла
     printf(T_CYAN "[Введите имя файла для редактирования]: " T_RESET);
     scanf("%s", filename);
-    getchar(); // Удаляем символ новой строки после ввода имени файла
+    getchar();
 
-    // Открытие файла для чтения
     file = fopen(filename, "r");
     if (file == NULL) {
         fprintf(stderr, T_RED "[err]: [не удалось открыть файл: %s]\n" T_RESET, filename);
         return;
     }
 
-    // Чтение содержимого файла
     while (fgets(lines[lineCount], sizeof(lines[lineCount]), file) != NULL && lineCount < MAX_LINES) {
         lineCount++;
     }
     fclose(file);
 
-    // Модальный ввод
     printf(T_CYAN "[нажмите 'w' для ввода текста, 'r' для чтения, 'q' для выхода]: \n" T_RESET);
     while ((mode = getchar()) != 'q') {
         if (mode == 'w') {
@@ -97,7 +94,6 @@ void editor()
         }
     }
 
-    // Сохранение изменений в файл
     file = fopen(filename, "w");
     if (file == NULL) {
         fprintf(stderr, T_RED "[err]: [не удалось открыть файл для записи: %s]\n" T_RESET, filename);
@@ -116,9 +112,9 @@ void editor()
 
 void print_fetch()
 {
-    printf(T_CYAN "      _____            User:        DeltaDev\n" T_RESET);
+    printf(T_CYAN "      _____              User:        DeltaDev\n" T_RESET);
     printf(T_CYAN "      / /\\ \\          ---------------------------\n" T_RESET);
-    printf(T_CYAN "     / /  \\ \\          🖫 OS:          DeltaOS Linux\n" T_RESET);
+    printf(T_CYAN "     / /  \\ \\          🖫 OS:          OpenDelta Linux\n" T_RESET);
     printf(T_CYAN "    / /    \\ \\         🗃 Kernel:      Linux\n" T_RESET);
     printf(T_CYAN "   / /      \\ \\        🗔 Shell:       bash\n" T_RESET);
     printf(T_CYAN "  / /        \\ \\       🗂 PKGS:        no\n" T_RESET);
