@@ -30,6 +30,7 @@
 #define MAX_LINES 512
 #define MAX_LINE_LENGTH 1024
 #define MAX_FOLDER_LENGTH 128
+#define MAX_PATH_LENGTH 128
 
 struct file_explorer {
     /*variables*/
@@ -45,7 +46,7 @@ struct file_explorer {
     int isDisplaying;
 };
 
-/*add file */
+/* add file */
 void add_file()
 {
     struct file_explorer var;
@@ -66,6 +67,7 @@ void add_file()
     }
 }
 
+/* add dir */
 void add_dir()
 {
     struct file_explorer var;
@@ -85,7 +87,7 @@ void add_dir()
     }
 }
 
-/*display content in file */
+/* display content in file */
 void displayFile(const char *fileName)
 {
     struct file_explorer var;
@@ -110,7 +112,7 @@ void displayFile(const char *fileName)
     }
 }
 
-/*delete file */
+/* delete file */
 void del()
 {
     struct file_explorer var;
@@ -148,10 +150,10 @@ void del()
     }
 }
 
-/*go to directory */
-void goToDir(const char *path)
+/* go to directory */
+void goToDir(const char *path[MAX_PATH_LENGTH])
 {
-    if (chdir(path) == 0) {
+    if (chdir(*path) == 0) {
         printf(T_GREEN "[🗀 Успешно перешли в директорию]: %s\n" T_RESET, path);
     }
     else {
@@ -159,6 +161,7 @@ void goToDir(const char *path)
     }
 }
 
+/* show this directory */
 void showThisDir()
 {
     struct file_explorer var = {0};
@@ -170,22 +173,22 @@ void showThisDir()
     }
 }
 
-/*list files*/
+/* list files */
 void list()
 {
-    struct dirent *de;  // Структура для хранения информации о файлах
-    DIR *dr = opendir(".");  // Открытие текущей директории
+    struct dirent *de;
+    DIR *dr = opendir(".");
 
-    if (dr == NULL) {  // Проверка на успешное открытие
+    if (dr == NULL) {
         printf("Не удалось открыть текущую директорию.\n");
         return;
     }
 
     printf(T_CYAN "[🖹 Файлы в текущей директории]:\n" T_RESET);
-    while ((de = readdir(dr)) != NULL) {  // Чтение списка файлов
-        // Пропускаем . и ..
+    while ((de = readdir(dr)) != NULL) {
+
         if (de->d_name[0] != '.') {
-            printf("%s\n", de->d_name);  // Вывод имени файла
+            printf("%s\n", de->d_name);
         }
     }
 
