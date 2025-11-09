@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <sys/types.h>
 #include "lib/commands.h"
-#include "lib/simple_coms.h"
+#include "lib/simple_comms.h"
 #include "lib/files.h"
 
 //==================================
@@ -19,12 +19,13 @@
 #define T_MAGENTA "\033[0;35m"
 
 #define MCL 255 // Максимальная длинна строки
+#define MAX_PATH_LENGTH 128
 
 struct console {
     char command[MCL];
     unsigned int numberOfCommands;
     char *fileName;
-    char *folderName;
+    char *folderName[MAX_PATH_LENGTH];
 };
 
 int main(void)
@@ -37,11 +38,7 @@ int main(void)
         if (scanf("%255s", console.command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
         }
-
-        if (strcmp(console.command, "intro") == 0) {
-            intro();
-        }
-
+        
         else if (strcmp(console.command, "calc") == 0) {
             printf(T_BLUE "[🖩 калькулятор]\n" T_RESET);
             double FRST_NUMBER;
@@ -114,7 +111,7 @@ int main(void)
         }
 
         else if (strcmp(console.command, "gtd") == 0) {
-            const char *dirPath = console.folderName;
+            const char *dirPath = *console.folderName;
             goToDir(dirPath);
         }
 
