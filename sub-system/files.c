@@ -72,7 +72,7 @@ void add_dir()
 {
     struct file_explorer var;
 
-    printf(T_CYAN "[🖹 введите имя папки]: \n" T_RESET);
+    printf(T_CYAN "[🗀 введите имя папки]: \n" T_RESET);
     scanf("%s\n", var.folderName);
     mkdir(var.folderName, 0777);
     printf(T_CYAN "[папка '%s' создана]\n" T_RESET, var.folderName);
@@ -90,26 +90,30 @@ void add_dir()
 /* display content in file */
 void displayFile(const char *fileName)
 {
+    
     struct file_explorer var;
+    var.file = NULL;
+    var.isDisplaying = 0;
+
+    printf(T_CYAN "[🖹 введите имя файла]: " T_RESET);
+    if (scanf("%511s", var.fileName) != 1) {
+        printf(T_RED "[ошибка чтения имени файла]\n" T_RESET);
+        return;
+    }
 
     var.file = fopen(var.fileName, "r");
-    printf(T_CYAN "[введите имя файла]: " T_RESET);
-    scanf("%s\n", var.fileName);
-    var.isDisplaying = 0;
-    if (strcmp(var.token, "") == 0) {
-        if (var.file == NULL) {
-            printf(T_RED "[ошибка открытия файла для чтения]\n" T_RESET);
-            return;
-        }
-        else {
-            fclose(var.file);
-            var.isDisplaying = 1;
-        }
+    if (var.file == NULL) {
+        printf(T_RED "[ошибка открытия файла для чтения: %s]\n" T_RESET, var.fileName);
+        return;
     }
 
-    while (fgets(var.line, sizeof(var.line), var.file)) {
-        printf("%s\n", var.line);
+    var.isDisplaying = 1;
+    while (fgets(var.line, sizeof(var.line), var.file) != NULL) {
+        fputs(var.line, stdout);
     }
+
+    fclose(var.file);
+    var.isDisplaying = 0;
 }
 
 /* delete file */
@@ -151,9 +155,14 @@ void del()
 }
 
 /* go to directory */
-void goToDir(const char *path[MAX_PATH_LENGTH])
+void goToDir(const char *path)
 {
-    if (chdir(*path) == 0) {
+    if (path == NULL) {
+        fprintf(stderr, T_RED "[err]: [пустой путь]\n" T_RESET);
+        return;
+    }
+
+    if (chdir(path) == 0) {
         printf(T_GREEN "[🗀 Успешно перешли в директорию]: %s\n" T_RESET, path);
     }
     else {
