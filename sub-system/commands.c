@@ -6,6 +6,7 @@
 #include "lib/files.h"
 #include "lib/simple_comms.h"
 
+/* colors */
 #define T_RED "\033[38;2;255;0;0m"
 #define T_GREEN "\033[38;2;0;255;0m"
 #define T_BLUE "\033[38;2;0;0;255m"
@@ -14,10 +15,23 @@
 #define T_RESET "\033[0m"
 #define T_MAGENTA "\033[0;35m"
 
+/* constants */
 #define MAX_LINES 512
 #define MAX_LINE_LENGTH 1024
 #define MAX_CONTENT_LENGTH 2048
 #define MAX_ARGUMENT_LENGTH 256
+#define MAX_USER_NAME_LENGTH 128
+#define MAX_OS_TITLE_LANGTH 128
+#define MAX_HOST_NAME_LENGTH 128
+
+typedef struct {
+    const char *user_name[MAX_USER_NAME_LENGTH];
+    const char *os_title[MAX_OS_TITLE_LANGTH];
+    const char *host_name[MAX_HOST_NAME_LENGTH];
+    const char *cpu[128];
+    const char *gpu[128];
+    double disk_memory[32768];
+} UserInfo; 
 
 #ifndef COMMANDS_H
 #define COMMANDS_H
@@ -37,7 +51,7 @@ void editorLogo()
 void editor()
 {
     char lines[MAX_LINES][MAX_LINE_LENGTH];
-    char inputLine[MAX_LINE_LENGTH];
+   //char inputLine[MAX_LINE_LENGTH];
     char filename[100];
     char mode;
     int lineCount;
@@ -112,14 +126,24 @@ void editor()
 
 void print_fetch()
 {
-    printf(T_CYAN "      _____              User:        DeltaDev\n" T_RESET);
-    printf(T_CYAN "      / /\\ \\          ---------------------------\n" T_RESET);
-    printf(T_CYAN "     / /  \\ \\          🖫 OS:          OpenDelta Linux\n" T_RESET);
-    printf(T_CYAN "    / /    \\ \\         🗃 Kernel:      Linux\n" T_RESET);
-    printf(T_CYAN "   / /      \\ \\        🗔 Shell:       bash\n" T_RESET);
-    printf(T_CYAN "  / /        \\ \\       🗂 PKGS:        no\n" T_RESET);
-    printf(T_CYAN " / /          \\ \\      🖷 Terminal:    DeltaTerminal\n" T_RESET);
-    printf(T_CYAN "/_/____________\\_\\     🖳 Host:        Laptop\n" T_RESET);
+  	UserInfo user = {
+  	    .user_name = "DeltaDev",
+  	    .host_name = "HpLaptop",
+  	    .os_title = "OpenDelta",
+  	    .cpu = "intel core i5 7200U",
+  	    .gpu = "Radeon M300"
+  	};
+  	
+    printf(T_CYAN "        ___               User:        %s\n" T_RESET, *user.user_name);
+    printf(T_CYAN "       /  /               ---------------------------\n" T_RESET);
+    printf(T_CYAN "      /  / /\\             🖫 OS:          %s\n" T_RESET, *user.os_title);
+    printf(T_CYAN "     /  / /  \\            🗃 Kernel:      Linux\n" T_RESET);
+    printf(T_CYAN "    /  /  \\   \\           🗔 Shell:       dltsh\n" T_RESET);
+    printf(T_CYAN "   /  /    \\   \\          🗂 PKGS:        5\n" T_RESET);
+    printf(T_CYAN "  /  /  /\\  \\   \\         🖷 Terminal:    Termitex\n" T_RESET);
+    printf(T_CYAN " /  /  /  \\  \\   \\        🖳 Host:        %s\n" T_RESET, *user.host_name);
+    printf(T_CYAN "/  /  /    \\  \\   \\       🖪 cpu: %s\n" T_RESET, *user.cpu);
+    printf(T_CYAN "\\_/  /______\\   \\_/       🖭 gpu: %s\n" T_RESET, *user.gpu);
 }
 
 #endif
