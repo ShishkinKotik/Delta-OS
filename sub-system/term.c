@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/unistd.h>
 #include <sys/types.h>
 #include "lib/commands.h"
 #include "lib/simple_comms.h"
@@ -18,8 +21,12 @@
 #define T_RESET "\033[0m"
 #define T_MAGENTA "\033[0;35m"
 
+/* constants */
 #define MCL 255 // Максимальная длинна строки
 #define MAX_PATH_LENGTH 128
+#define MAX_USER_NAME_LENGTH 128
+#define MAX_OS_TITLE_LANGTH 128
+#define MAX_HOST_NAME_LENGTH 128
 
 struct console {
     char command[MCL];
@@ -28,13 +35,34 @@ struct console {
     char *folderName[MAX_PATH_LENGTH];
 };
 
+typedef struct {
+    const char *user_name[MAX_USER_NAME_LENGTH];
+    const char *os_title[MAX_OS_TITLE_LANGTH];
+    const char *host_name[MAX_HOST_NAME_LENGTH];
+    const char *cpu[128];
+    const char *gpu[128];
+    double disk_memory[32768];
+} UserInfo; 
+
+UserInfo user;
+
+void info()
+{
+    UserInfo info;
+    printf(T_CYAN "[впешите своё имя]: \n" T_RESET);
+    scanf("%s\n", *info.user_name);    
+}
+
 int main(void)
 {
     welcome();
     struct console console;
 
     while (true) {
-        printf("#> ");
+
+        printf("user@host");
+        printf(T_CYAN "~" T_RESET);
+        printf("$ > ");
         if (scanf("%255s", console.command) != 1) {
             fprintf(stderr, T_RED "[err]: [ошибка ввода команды!]\n" T_RESET);
         }
@@ -95,6 +123,10 @@ int main(void)
             console.numberOfCommands = 13;
             printf(T_CYAN "[всего команд]: '%d'\n" T_RESET, console.numberOfCommands);
             help();
+        }
+
+        else if (strcmp(console.command, "refresh") == 0) {
+            system("clear");
         }
 
         else if (strcmp(console.command, "lsf") == 0) {
