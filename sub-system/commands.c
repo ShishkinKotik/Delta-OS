@@ -143,6 +143,6 @@ void print_fetch()
     printf(T_CYAN "  /  /  /\\  \\   \\         terminal:    Termitex\n" T_RESET);
     printf(T_CYAN " /  /  /  \\  \\   \\        host:        %s\n" T_RESET, *user.host_name);
     printf(T_CYAN "/  /  /    \\  \\   \\       cpu:         %s\n" T_RESET, *user.cpu);
-    printf(T_CYAN "\\_/  /______\\   \\_/       gpu:         %s\n" T_RESET, *user.gpu);}
+    printf(T_CYAN "\\_/  /______\\  \\__/       gpu:         %s\n" T_RESET, *user.gpu);}
 
 #endif
