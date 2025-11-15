@@ -136,14 +136,13 @@ void print_fetch()
   	
     printf(T_CYAN "        ___               User:        %s\n" T_RESET, *user.user_name);
     printf(T_CYAN "       /  /               ---------------------------\n" T_RESET);
-    printf(T_CYAN "      /  / /\\             🖫 OS:          %s\n" T_RESET, *user.os_title);
-    printf(T_CYAN "     /  / /  \\            🗃 Kernel:      Linux\n" T_RESET);
-    printf(T_CYAN "    /  /  \\   \\           🗔 Shell:       dltsh\n" T_RESET);
-    printf(T_CYAN "   /  /    \\   \\          🗂 PKGS:        5\n" T_RESET);
-    printf(T_CYAN "  /  /  /\\  \\   \\         🖷 Terminal:    Termitex\n" T_RESET);
-    printf(T_CYAN " /  /  /  \\  \\   \\        🖳 Host:        %s\n" T_RESET, *user.host_name);
-    printf(T_CYAN "/  /  /    \\  \\   \\       🖪 cpu: %s\n" T_RESET, *user.cpu);
-    printf(T_CYAN "\\_/  /______\\   \\_/       🖭 gpu: %s\n" T_RESET, *user.gpu);
-}
+    printf(T_CYAN "      /  / /\\             os:          %s\n" T_RESET, *user.os_title);
+    printf(T_CYAN "     /  / /  \\            kernel:      Linux\n" T_RESET);
+    printf(T_CYAN "    /  /  \\   \\           shell:       dltsh\n" T_RESET);
+    printf(T_CYAN "   /  /    \\   \\          packeges:    5\n" T_RESET);
+    printf(T_CYAN "  /  /  /\\  \\   \\         terminal:    Termitex\n" T_RESET);
+    printf(T_CYAN " /  /  /  \\  \\   \\        host:        %s\n" T_RESET, *user.host_name);
+    printf(T_CYAN "/  /  /    \\  \\   \\       cpu:         %s\n" T_RESET, *user.cpu);
+    printf(T_CYAN "\\_/  /______\\   \\_/       gpu:         %s\n" T_RESET, *user.gpu);}
 
 #endif
