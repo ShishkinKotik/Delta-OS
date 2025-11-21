@@ -1,3 +1,11 @@
+// your_version()
+#ifndef VERSION_H
+#define VERSION_H
+
+void your_version();
+
+#endif
+
 //edit()
 #ifndef EDIT_H
 #define EDIT_H
