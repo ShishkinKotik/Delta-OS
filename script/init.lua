@@ -9,8 +9,8 @@ print(string.format('status: OS=OpenDelta Linux %s', STATUS_OS))
 
 local home = os.getenv("HOME") or ""
 local workdir = home .. "/OpenDelta/sub-system"
-local gcc_cmd = "gcc term.c commands.c files.c simple_comms.c -o bin/term"
-local term_path = workdir .. "bin/term"
+local gcc_cmd = "gcc term.c commands.c files.c simple_comms.c -o term"
+local term_path = workdir .. "./term"
 local chmod_cmd = "chmod +x " .. term_path
 
 local function run(cmd, allow_fail)
