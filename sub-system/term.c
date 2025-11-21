@@ -115,6 +115,10 @@ int main(void)
             editor();
         }
 
+        else if (strcmp(console.command, "ver") == 0) {
+            your_version();
+        }
+            
         else if (strcmp(console.command, "dlt-fetch") == 0) {
             print_fetch();
         }
